@@ -1,0 +1,31 @@
+{
+	"name": "minha-associacao",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"dev:api": "turbo run dev --filter=@minha-associacao/api",
+		"dev:mobile": "turbo run dev --filter=@minha-associacao/mobile",
+		"dev:web": "turbo run dev --filter=@minha-associacao/web --filter=@minha-associacao/api",
+		"lint": "turbo run lint lint:root",
+		"lint:root": "biome lint package.json turbo.json biome.json",
+		"format": "biome format --write .",
+		"format:check": "biome format .",
+		"typecheck": "turbo run typecheck",
+		"test": "turbo run test",
+		"test:coverage": "turbo run test:coverage",
+		"check:generated": "turbo run check:generated",
+		"boundaries": "turbo boundaries",
+		"check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm check:generated && pnpm boundaries",
+		"verify": "pnpm check && pnpm build"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"turbo": "2.10.4"
+	},
+	"packageManager": "pnpm@11.12.0+sha512.820a6fbd0d9f04c226638002aead1e45340a9139dd5dc077c1d83ef44aa2481c8eb6637b4c9aa696a3c7e35ba818e49cf27213e5f2b91138d09b7a3e26e898ba",
+	"engines": {
+		"node": ">=24 <25",
+		"pnpm": ">=11.12.0 <12"
+	}
+}

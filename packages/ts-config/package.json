@@ -1,0 +1,17 @@
+{
+	"name": "@minha-associacao/ts-config",
+	"private": true,
+	"scripts": {
+		"lint": "biome lint ."
+	},
+	"exports": {
+		"./base": "./base.json",
+		"./mobile": "./mobile.json",
+		"./node": "./node.json",
+		"./node-library": "./node-library.json",
+		"./web": "./web.json"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:"
+	}
+}

@@ -1,0 +1,72 @@
+{
+	"$schema": "https://turborepo.dev/schema.json",
+	"ui": "stream",
+	"globalDependencies": [".node-version", "biome.json", "pnpm-workspace.yaml"],
+	"tasks": {
+		"transit": {
+			"dependsOn": ["^transit"]
+		},
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": [".output/**", ".turbo/tsconfig.build.tsbuildinfo", "dist/**"]
+		},
+		"@minha-associacao/mobile#build": {
+			"dependsOn": ["^build"],
+			"env": ["EXPO_PUBLIC_API_URL"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*"],
+			"outputs": ["dist/**"]
+		},
+		"@minha-associacao/web#build": {
+			"dependsOn": ["^build"],
+			"env": ["VITE_API_URL"],
+			"inputs": ["$TURBO_DEFAULT$", ".env*", "!src/routeTree.gen.ts"],
+			"outputs": [".output/**", "src/routeTree.gen.ts"]
+		},
+		"dev": {
+			"cache": false,
+			"dependsOn": ["^build"],
+			"persistent": true
+		},
+		"@minha-associacao/api#dev": {
+			"cache": false,
+			"dependsOn": ["^build"],
+			"passThroughEnv": ["CORS_ALLOWED_ORIGINS", "HOST", "NODE_ENV", "PORT"],
+			"persistent": true,
+			"with": ["@minha-associacao/config#dev"]
+		},
+		"@minha-associacao/mobile#dev": {
+			"cache": false,
+			"dependsOn": ["^build"],
+			"passThroughEnv": ["EXPO_PUBLIC_API_URL"],
+			"persistent": true
+		},
+		"@minha-associacao/web#dev": {
+			"cache": false,
+			"dependsOn": ["^build"],
+			"passThroughEnv": ["VITE_API_URL"],
+			"persistent": true
+		},
+		"lint": {
+			"dependsOn": ["transit"]
+		},
+		"//#lint:root": {
+			"inputs": ["$TURBO_ROOT$/biome.json", "$TURBO_ROOT$/package.json", "$TURBO_ROOT$/turbo.json"]
+		},
+		"typecheck": {
+			"dependsOn": ["^build"]
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", ".env.test", ".env.test.local"]
+		},
+		"test:coverage": {
+			"dependsOn": ["^build"],
+			"inputs": ["$TURBO_DEFAULT$", ".env.test", ".env.test.local"],
+			"outputs": ["coverage/**"]
+		},
+		"check:generated": {
+			"cache": false
+		}
+	}
+}

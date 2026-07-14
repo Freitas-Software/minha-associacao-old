@@ -1,0 +1,75 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+.pnpm-store/
+
+# Environment and local secrets
+.env
+.env.*
+*.local
+!.env.example
+!**/.env.example
+!.env.*.example
+!**/.env.*.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Build outputs and generated caches
+.next/
+.nitro/
+.output/
+.tanstack/
+.turbo/
+.vinxi/
+build/
+dist/
+dist-ssr/
+out/
+web-build/
+*.tsbuildinfo
+
+# Expo and React Native
+.expo/
+.expo-shared/
+.kotlin/
+.metro-health-check*
+apps/mobile/android/
+apps/mobile/example/
+apps/mobile/ios/
+expo-env.d.ts
+*.jks
+*.mobileprovision
+*.p8
+
+# Web tooling
+.wrangler/
+__unconfig*
+todos.json
+
+# Tests
+coverage/
+playwright-report/
+test-results/
+
+# Tool caches
+.cache/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.fleet/
+.idea/
+*.swp
+*.orig.*
+*~
