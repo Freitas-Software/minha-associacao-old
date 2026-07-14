@@ -1,0 +1,53 @@
+{
+	"biome.enabled": true,
+	"biome.lsp.bin": "node_modules/@biomejs/biome/bin/biome",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.biome": "explicit",
+		"source.organizeImports.biome": "explicit"
+	},
+	"editor.formatOnSave": true,
+	"files.eol": "\n",
+	"files.readonlyInclude": {
+		"**/src/routeTree.gen.ts": true
+	},
+	"files.watcherExclude": {
+		"**/.expo/**": true,
+		"**/.output/**": true,
+		"**/.turbo/**": true,
+		"**/coverage/**": true,
+		"**/dist/**": true,
+		"**/node_modules/**": true,
+		"**/src/routeTree.gen.ts": true
+	},
+	"search.exclude": {
+		"**/.expo": true,
+		"**/.output": true,
+		"**/.turbo": true,
+		"**/coverage": true,
+		"**/dist": true,
+		"**/node_modules": true,
+		"**/src/routeTree.gen.ts": true
+	},
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
+}

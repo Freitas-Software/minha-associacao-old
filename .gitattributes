@@ -1,0 +1,27 @@
+* text=auto eol=lf
+
+# Raster images and media
+*.avif binary
+*.gif binary
+*.heic binary
+*.ico binary
+*.jpeg binary
+*.jpg binary
+*.mp3 binary
+*.mp4 binary
+*.png binary
+*.webm binary
+*.webp binary
+
+# Fonts
+*.eot binary
+*.otf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# Archives and documents
+*.gz binary
+*.pdf binary
+*.tar binary
+*.zip binary

@@ -1,0 +1,44 @@
+{
+	"name": "@minha-associacao/config",
+	"private": true,
+	"type": "module",
+	"sideEffects": false,
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"development": "./src/index.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./loaders": {
+			"types": "./dist/loaders/index.d.ts",
+			"development": "./src/loaders/index.ts",
+			"import": "./dist/loaders/index.js",
+			"default": "./dist/loaders/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc --project tsconfig.json",
+		"dev": "tsc --project tsconfig.json --watch --preserveWatchOutput",
+		"lint": "biome lint src test vitest.config.ts",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --project tsconfig.json --noEmit --incremental false && tsc --project tsconfig.test.json --noEmit --incremental false"
+	},
+	"dependencies": {
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"@minha-associacao/ts-config": "workspace:*",
+		"@types/node": "catalog:",
+		"@vitest/coverage-v8": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

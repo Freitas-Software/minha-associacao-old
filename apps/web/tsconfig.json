@@ -1,0 +1,4 @@
+{
+	"extends": "@minha-associacao/ts-config/web",
+	"include": ["**/*.ts", "**/*.tsx"]
+}
