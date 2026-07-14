@@ -1,0 +1,66 @@
+import { describe, expect, it } from 'vitest';
+import { createConfig, parseEnv } from '../src/index.js';
+
+describe('environment parsing', () => {
+	it('applies safe development defaults', () => {
+		expect(parseEnv({})).toEqual({
+			NODE_ENV: 'development',
+			HOST: '0.0.0.0',
+			PORT: 3001,
+			CORS_ALLOWED_ORIGINS: [],
+		});
+	});
+
+	it('coerces the port and normalizes comma-separated origins', () => {
+		expect(
+			parseEnv({
+				NODE_ENV: 'production',
+				HOST: '127.0.0.1',
+				PORT: '4000',
+				CORS_ALLOWED_ORIGINS: 'https://app.example.com/, https://admin.example.com/path',
+			})
+		).toEqual({
+			NODE_ENV: 'production',
+			HOST: '127.0.0.1',
+			PORT: 4000,
+			CORS_ALLOWED_ORIGINS: ['https://app.example.com', 'https://admin.example.com'],
+		});
+	});
+
+	it('normalizes origins provided as an array', () => {
+		expect(
+			parseEnv({
+				CORS_ALLOWED_ORIGINS: ['https://app.example.com/', 'https://admin.example.com/path'],
+			}).CORS_ALLOWED_ORIGINS
+		).toEqual(['https://app.example.com', 'https://admin.example.com']);
+	});
+
+	it.each([
+		{ NODE_ENV: 'staging' },
+		{ PORT: '0' },
+		{ PORT: '65536' },
+		{ CORS_ALLOWED_ORIGINS: 'not-a-url' },
+	])('rejects invalid environment values: %o', environment => {
+		expect(() => parseEnv(environment)).toThrow();
+	});
+});
+
+describe('Config', () => {
+	it('allows the local web app only in development by default', () => {
+		const development = createConfig({ NODE_ENV: 'development' });
+		const production = createConfig({ NODE_ENV: 'production' });
+
+		expect(development.isCorsOriginAllowed('http://localhost:3000/')).toBe(true);
+		expect(development.isCorsOriginAllowed('http://localhost:8081')).toBe(true);
+		expect(production.isCorsOriginAllowed('http://localhost:3000')).toBe(false);
+		expect(production.isCorsOriginAllowed('http://localhost:8081')).toBe(false);
+	});
+
+	it('exposes the selected runtime mode', () => {
+		const config = createConfig({ NODE_ENV: 'test' });
+
+		expect(config.isDevelopment).toBe(false);
+		expect(config.isProduction).toBe(false);
+		expect(config.isTest).toBe(true);
+	});
+});
