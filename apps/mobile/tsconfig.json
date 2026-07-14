@@ -1,0 +1,10 @@
+{
+	"extends": ["expo/tsconfig.base", "@minha-associacao/ts-config/mobile"],
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./src/*"],
+			"@/assets/*": ["./assets/*"]
+		}
+	},
+	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}
