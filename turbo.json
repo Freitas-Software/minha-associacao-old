@@ -59,6 +59,10 @@
 			"cache": false,
 			"inputs": ["$TURBO_DEFAULT$", ".env*"]
 		},
+		"export": {
+			"cache": false,
+			"inputs": ["$TURBO_DEFAULT$", ".env*"]
+		},
 		"check:generated": {
 			"cache": false
 		}
