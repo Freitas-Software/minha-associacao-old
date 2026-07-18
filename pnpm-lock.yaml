@@ -315,6 +315,24 @@ importers:
         specifier: 'catalog:'
         version: 4.1.10(@types/node@24.13.3)(@vitest/coverage-v8@4.1.10)(jsdom@28.1.0(@noble/hashes@2.2.0))(vite@8.1.4(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(tsx@4.23.0)(yaml@2.9.0))
 
+  packages/core:
+    devDependencies:
+      '@minha-associacao/ts-config':
+        specifier: workspace:*
+        version: link:../ts-config
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+
+  packages/design-tokens:
+    devDependencies:
+      '@minha-associacao/ts-config':
+        specifier: workspace:*
+        version: link:../ts-config
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+
   packages/ts-config:
     devDependencies:
       '@biomejs/biome':
