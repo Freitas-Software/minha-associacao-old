@@ -95,12 +95,15 @@ Os comandos podem ser executados separadamente:
 | `pnpm typecheck` | tipos TypeScript |
 | `pnpm test` | testes automatizados |
 | `pnpm test:coverage` | testes com thresholds e relatorios de cobertura |
+| `pnpm expo:check` | saude e compatibilidade do projeto Expo |
 | `pnpm check:generated` | artefatos gerados atualizados |
 | `pnpm boundaries` | fronteiras entre pacotes |
 | `pnpm build` | builds de producao |
 
-Use `pnpm format` para aplicar a formatacao. A CI executa os testes com cobertura, preserva
-os relatorios como artefato e constroi as imagens da API e do web sem publica-las.
+Use `pnpm format` para aplicar a formatacao. A CI executa os testes com cobertura, valida o
+projeto Expo, preserva os relatorios como artefato e constroi as imagens da API e do web
+sem publica-las. `pnpm build` e deterministico e nao aciona EAS; o procedimento remoto do
+aplicativo esta em [docs/mobile-release.md](docs/mobile-release.md).
 
 ## Containers
 

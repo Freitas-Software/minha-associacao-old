@@ -14,6 +14,7 @@
 		"expo-splash-screen": "~57.0.4",
 		"expo-symbols": "~57.0.1",
 		"expo-system-ui": "~57.0.1",
+		"expo-updates": "catalog:",
 		"expo-web-browser": "~57.0.1",
 		"react": "catalog:expo",
 		"react-dom": "catalog:expo",
@@ -23,20 +24,27 @@
 		"react-native-safe-area-context": "~5.7.0",
 		"react-native-screens": "4.25.2",
 		"react-native-web": "~0.21.0",
-		"react-native-worklets": "0.10.2"
+		"react-native-worklets": "catalog:"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:",
 		"@minha-associacao/ts-config": "workspace:*",
 		"@types/react": "catalog:expo",
 		"@vitest/coverage-v8": "catalog:",
+		"expo-doctor": "catalog:",
 		"typescript": "catalog:",
 		"vitest": "catalog:"
 	},
 	"scripts": {
 		"dev": "expo start",
 		"start": "expo start",
-		"build": "pnpx eas-cli@21.0.2 workflow:run create-production-builds.yml",
+		"export": "expo export --platform all --output-dir dist",
+		"expo:check": "expo-doctor && expo install --check && expo config --type public --json",
+		"eas:development": "pnpx eas-cli@21.0.2 workflow:run create-development-builds.yml",
+		"eas:preview": "pnpx eas-cli@21.0.2 workflow:run deliver-preview.yml",
+		"eas:production": "pnpx eas-cli@21.0.2 workflow:run release-production.yml",
+		"eas:submit": "pnpx eas-cli@21.0.2 workflow:run submit-production.yml",
+		"eas:rollback": "pnpx eas-cli@21.0.2 workflow:run rollback-production-update.yml",
 		"reset-project": "node ./scripts/reset-project.js",
 		"android": "expo start --android",
 		"ios": "expo start --ios",

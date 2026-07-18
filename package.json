@@ -14,9 +14,11 @@
 		"typecheck": "turbo run typecheck",
 		"test": "turbo run test",
 		"test:coverage": "turbo run test:coverage",
+		"expo:check": "turbo run expo:check",
+		"export": "turbo run export",
 		"check:generated": "turbo run check:generated",
 		"boundaries": "turbo boundaries",
-		"check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm check:generated && pnpm boundaries",
+		"check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm expo:check && pnpm check:generated && pnpm boundaries",
 		"verify": "pnpm check && pnpm build"
 	},
 	"devDependencies": {

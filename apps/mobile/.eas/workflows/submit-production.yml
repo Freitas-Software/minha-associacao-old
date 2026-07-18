@@ -1,0 +1,36 @@
+name: Submit production builds
+
+on:
+  workflow_dispatch:
+    inputs:
+      android_build_id:
+        type: string
+        required: false
+      ios_build_id:
+        type: string
+        required: false
+
+jobs:
+  approve_submit:
+    type: require-approval
+    environment: production
+
+  submit_android:
+    needs: [approve_submit]
+    if: ${{ inputs.android_build_id }}
+    type: custom
+    environment: production
+    steps:
+      - uses: eas/checkout
+      - name: Submit Android build
+        run: pnpx eas-cli@21.0.2 submit --platform android --id "${{ inputs.android_build_id }}" --profile production --non-interactive
+
+  submit_ios:
+    needs: [approve_submit]
+    if: ${{ inputs.ios_build_id }}
+    type: custom
+    environment: production
+    steps:
+      - uses: eas/checkout
+      - name: Submit iOS build
+        run: pnpx eas-cli@21.0.2 submit --platform ios --id "${{ inputs.ios_build_id }}" --profile production --non-interactive

@@ -25,7 +25,25 @@ pnpm typecheck
 pnpm lint
 pnpm test
 pnpm test:coverage
-pnpm build
+pnpm export
+pnpm expo:check
 ```
 
-`pnpm build` exporta os bundles para `dist/`. Builds nativos usam os perfis `development`, `preview` e `production` de `eas.json`.
+`pnpm export` gera bundles locais em `dist/` quando necessario. Ele nao cria builds EAS nem
+publica updates. O gate padrao (`pnpm build`) nao executa exportacao mobile porque a
+exportacao nativa ainda precisa de estabilizacao no Metro; a CI valida o app com
+`pnpm expo:check`.
+Para executar uma operacao remota EAS de forma intencional, use um dos comandos abaixo:
+
+```bash
+pnpm eas:development
+pnpm eas:preview
+pnpm eas:production
+pnpm eas:submit
+pnpm eas:rollback
+```
+
+Os perfis `development`, `preview` e `production` usam canais EAS Update separados. O
+`runtimeVersion` usa a politica `fingerprint`, portanto alteracoes nativas exigem um novo
+build compativel; alteracoes somente JavaScript podem ser entregues por EAS Update.
+Consulte [../../docs/mobile-release.md](../../docs/mobile-release.md) antes de publicar.

@@ -1,0 +1,80 @@
+name: Deliver preview
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - apps/mobile/**
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
+      - turbo.json
+      - .node-version
+
+jobs:
+  validate:
+    type: custom
+    environment: preview
+    steps:
+      - uses: eas/checkout
+      - uses: eas/install_node_modules
+      - name: Validate mobile project
+        working_directory: ../..
+        run: |
+          pnpm --filter @minha-associacao/mobile lint
+          pnpm --filter @minha-associacao/mobile typecheck
+          pnpm --filter @minha-associacao/mobile test
+          pnpm --filter @minha-associacao/mobile expo:check
+
+  fingerprint:
+    needs: [validate]
+    type: fingerprint
+
+  get_android_build:
+    needs: [fingerprint]
+    type: get-build
+    params:
+      platform: android
+      profile: preview
+      fingerprint_hash: ${{ needs.fingerprint.outputs.android_fingerprint_hash }}
+
+  get_ios_build:
+    needs: [fingerprint]
+    type: get-build
+    params:
+      platform: ios
+      profile: preview
+      fingerprint_hash: ${{ needs.fingerprint.outputs.ios_fingerprint_hash }}
+
+  build_android:
+    needs: [get_android_build]
+    if: ${{ !needs.get_android_build.outputs.build_id }}
+    type: build
+    params:
+      platform: android
+      profile: preview
+
+  build_ios:
+    needs: [get_ios_build]
+    if: ${{ !needs.get_ios_build.outputs.build_id }}
+    type: build
+    params:
+      platform: ios
+      profile: preview
+
+  update_android:
+    needs: [get_android_build]
+    if: ${{ needs.get_android_build.outputs.build_id }}
+    type: update
+    params:
+      platform: android
+      branch: preview
+
+  update_ios:
+    needs: [get_ios_build]
+    if: ${{ needs.get_ios_build.outputs.build_id }}
+    type: update
+    params:
+      platform: ios
+      branch: preview

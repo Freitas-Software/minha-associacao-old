@@ -3,19 +3,10 @@
 	"ui": "stream",
 	"globalDependencies": [".node-version", "biome.json", "pnpm-workspace.yaml"],
 	"tasks": {
-		"transit": {
-			"dependsOn": ["^transit"]
-		},
 		"build": {
 			"dependsOn": ["^build"],
 			"inputs": ["$TURBO_DEFAULT$", ".env*"],
 			"outputs": [".output/**", ".turbo/tsconfig.build.tsbuildinfo", "dist/**"]
-		},
-		"@minha-associacao/mobile#build": {
-			"dependsOn": ["^build"],
-			"env": ["EXPO_PUBLIC_API_URL"],
-			"inputs": ["$TURBO_DEFAULT$", ".env*"],
-			"outputs": ["dist/**"]
 		},
 		"@minha-associacao/web#build": {
 			"dependsOn": ["^build"],
@@ -37,7 +28,6 @@
 		},
 		"@minha-associacao/mobile#dev": {
 			"cache": false,
-			"dependsOn": ["^build"],
 			"passThroughEnv": ["EXPO_PUBLIC_API_URL"],
 			"persistent": true
 		},
@@ -48,7 +38,7 @@
 			"persistent": true
 		},
 		"lint": {
-			"dependsOn": ["transit"]
+			"dependsOn": ["^lint"]
 		},
 		"//#lint:root": {
 			"inputs": ["$TURBO_ROOT$/biome.json", "$TURBO_ROOT$/package.json", "$TURBO_ROOT$/turbo.json"]
@@ -64,6 +54,10 @@
 			"dependsOn": ["^build"],
 			"inputs": ["$TURBO_DEFAULT$", ".env.test", ".env.test.local"],
 			"outputs": ["coverage/**"]
+		},
+		"expo:check": {
+			"cache": false,
+			"inputs": ["$TURBO_DEFAULT$", ".env*"]
 		},
 		"check:generated": {
 			"cache": false
