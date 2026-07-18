@@ -7,6 +7,7 @@
 		"icon": "./assets/images/icon.png",
 		"scheme": "minha-associacao",
 		"userInterfaceStyle": "automatic",
+		"owner": "freitas-software",
 		"ios": {
 			"bundleIdentifier": "br.com.minhaassociacao.app",
 			"icon": "./assets/expo.icon"
