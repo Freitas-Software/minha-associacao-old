@@ -6,13 +6,15 @@ import {
 	typography,
 } from '@minha-associacao/design-tokens';
 import { createTheme } from '@mui/material/styles';
-
+import { componentOverrides } from './components/index.js';
 import type { AppThemeMode } from './types.js';
 
 export function createAppTheme(mode: AppThemeMode) {
 	const colors = mode === 'light' ? lightColors : darkColors;
 
 	return createTheme({
+		components: componentOverrides,
+
 		cssVariables: {
 			cssVarPrefix: 'association',
 		},
