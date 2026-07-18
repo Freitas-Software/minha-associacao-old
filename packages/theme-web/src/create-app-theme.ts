@@ -6,7 +6,8 @@ import {
 	typography,
 } from '@minha-associacao/design-tokens';
 import { createTheme } from '@mui/material/styles';
-import type { AppThemeMode } from './types';
+
+import type { AppThemeMode } from './types.js';
 
 export function createAppTheme(mode: AppThemeMode) {
 	const colors = mode === 'light' ? lightColors : darkColors;
@@ -22,6 +23,7 @@ export function createAppTheme(mode: AppThemeMode) {
 
 		palette: {
 			mode,
+
 			primary: {
 				main: colors.primary,
 				contrastText: colors.onPrimary,
@@ -48,7 +50,17 @@ export function createAppTheme(mode: AppThemeMode) {
 			},
 
 			divider: colors.outlineVariant,
+
+			action: {
+				active: colors.onSurfaceVariant,
+				disabled: colors.onSurfaceVariant,
+				disabledBackground: colors.surfaceVariant,
+				hover: colors.primaryContainer,
+				selected: colors.secondaryContainer,
+			},
 		},
+
+		semanticColors: colors,
 
 		shape: {
 			borderRadius: radius.md,
@@ -57,8 +69,76 @@ export function createAppTheme(mode: AppThemeMode) {
 		typography: {
 			fontFamily: typography.fontFamily.sans,
 
-			button: {
+			h1: {
+				fontSize: typography.fontSize['4xl'],
+				fontWeight: typography.fontWeight.bold,
+				lineHeight: typography.lineHeight.compact,
+			},
+
+			h2: {
+				fontSize: typography.fontSize['3xl'],
+				fontWeight: typography.fontWeight.bold,
+				lineHeight: typography.lineHeight.compact,
+			},
+
+			h3: {
+				fontSize: typography.fontSize['2xl'],
 				fontWeight: typography.fontWeight.semibold,
+				lineHeight: typography.lineHeight.compact,
+			},
+
+			h4: {
+				fontSize: typography.fontSize.xl,
+				fontWeight: typography.fontWeight.semibold,
+				lineHeight: typography.lineHeight.compact,
+			},
+
+			h5: {
+				fontSize: typography.fontSize.lg,
+				fontWeight: typography.fontWeight.semibold,
+				lineHeight: typography.lineHeight.normal,
+			},
+
+			h6: {
+				fontSize: typography.fontSize.md,
+				fontWeight: typography.fontWeight.semibold,
+				lineHeight: typography.lineHeight.normal,
+			},
+
+			body1: {
+				fontSize: typography.fontSize.md,
+				fontWeight: typography.fontWeight.regular,
+				lineHeight: typography.lineHeight.normal,
+			},
+
+			body2: {
+				fontSize: typography.fontSize.sm,
+				fontWeight: typography.fontWeight.regular,
+				lineHeight: typography.lineHeight.normal,
+			},
+
+			subtitle1: {
+				fontSize: typography.fontSize.md,
+				fontWeight: typography.fontWeight.medium,
+				lineHeight: typography.lineHeight.normal,
+			},
+
+			subtitle2: {
+				fontSize: typography.fontSize.sm,
+				fontWeight: typography.fontWeight.medium,
+				lineHeight: typography.lineHeight.normal,
+			},
+
+			caption: {
+				fontSize: typography.fontSize.xs,
+				fontWeight: typography.fontWeight.regular,
+				lineHeight: typography.lineHeight.normal,
+			},
+
+			button: {
+				fontSize: typography.fontSize.sm,
+				fontWeight: typography.fontWeight.semibold,
+				lineHeight: typography.lineHeight.normal,
 				textTransform: 'none',
 			},
 		},
