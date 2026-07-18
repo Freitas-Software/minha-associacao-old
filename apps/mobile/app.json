@@ -1,56 +1,56 @@
 {
-  "expo": {
-    "name": "Minha Associação",
-    "slug": "minha-associacao",
-    "version": "1.0.0",
-    "runtimeVersion": {
-      "policy": "fingerprint"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/2575b55f-1605-4c4f-a9e8-8b9aefa48248"
-    },
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "minha-associacao",
-    "userInterfaceStyle": "automatic",
-    "owner": "freitas-software",
-    "ios": {
-      "bundleIdentifier": "br.com.minhaassociacao.app",
-      "icon": "./assets/expo.icon"
-    },
-    "android": {
-      "package": "br.com.minhaassociacao.app",
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
-    },
-	"plugins": [
-		"expo-router",
-		"expo-system-ui",
-		[
-        "expo-splash-screen",
-        {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
-        }
-      ],
-      "@react-native-vector-icons/material-design-icons"
-    ],
-    "experiments": {
-      "autolinkingModuleResolution": true,
-      "typedRoutes": true,
-      "reactCompiler": true
-    },
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "2575b55f-1605-4c4f-a9e8-8b9aefa48248"
-      }
-    }
-  }
+	"expo": {
+		"name": "Minha Associação",
+		"slug": "minha-associacao",
+		"version": "1.0.0",
+		"runtimeVersion": {
+			"policy": "fingerprint"
+		},
+		"updates": {
+			"url": "https://u.expo.dev/2575b55f-1605-4c4f-a9e8-8b9aefa48248"
+		},
+		"orientation": "portrait",
+		"icon": "./assets/images/icon.png",
+		"scheme": "minha-associacao",
+		"userInterfaceStyle": "automatic",
+		"owner": "freitas-software",
+		"ios": {
+			"bundleIdentifier": "br.com.minhaassociacao.app",
+			"icon": "./assets/expo.icon"
+		},
+		"android": {
+			"package": "br.com.minhaassociacao.app",
+			"adaptiveIcon": {
+				"backgroundColor": "#E6F4FE",
+				"foregroundImage": "./assets/images/android-icon-foreground.png",
+				"backgroundImage": "./assets/images/android-icon-background.png",
+				"monochromeImage": "./assets/images/android-icon-monochrome.png"
+			},
+			"predictiveBackGestureEnabled": false
+		},
+		"plugins": [
+			"expo-router",
+			"expo-system-ui",
+			[
+				"expo-splash-screen",
+				{
+					"backgroundColor": "#208AEF",
+					"image": "./assets/images/splash-icon.png",
+					"imageWidth": 76
+				}
+			],
+			"@react-native-vector-icons/material-design-icons"
+		],
+		"experiments": {
+			"autolinkingModuleResolution": true,
+			"typedRoutes": true,
+			"reactCompiler": true
+		},
+		"extra": {
+			"router": {},
+			"eas": {
+				"projectId": "2575b55f-1605-4c4f-a9e8-8b9aefa48248"
+			}
+		}
+	}
 }
