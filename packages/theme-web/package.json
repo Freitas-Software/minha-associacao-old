@@ -1,0 +1,38 @@
+{
+	"name": "@minha-associacao/theme-web",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"import": "./src/index.ts",
+			"default": "./src/index.ts"
+		}
+	},
+	"scripts": {
+		"check": "biome check .",
+		"check:fix": "biome check --write .",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@emotion/react": "11.14.0",
+		"@emotion/styled": "11.14.1",
+		"@minha-associacao/design-tokens": "workspace:*",
+		"@mui/material": "9.2.0"
+	},
+	"peerDependencies": {
+		"react": ">=19.0.0",
+		"react-dom": ">=19.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"@minha-associacao/ts-config": "workspace:*",
+		"@types/react": "catalog:web",
+		"@types/react-dom": "catalog:web",
+		"react": "catalog:web",
+		"react-dom": "catalog:web",
+		"typescript": "catalog:"
+	}
+}
