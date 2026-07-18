@@ -29,10 +29,10 @@
 	"devDependencies": {
 		"@biomejs/biome": "catalog:",
 		"@minha-associacao/ts-config": "workspace:*",
-		"@types/react": "catalog:web",
-		"@types/react-dom": "catalog:web",
-		"react": "catalog:web",
-		"react-dom": "catalog:web",
+		"@types/react": "catalog:react",
+		"@types/react-dom": "catalog:react",
+		"react": "catalog:react",
+		"react-dom": "catalog:react",
 		"typescript": "catalog:"
 	}
 }
