@@ -1,0 +1,4 @@
+{
+	"extends": "@minha-associacao/ts-config/react-library.json",
+	"include": ["src/**/*.ts", "src/**/*.tsx"]
+}
