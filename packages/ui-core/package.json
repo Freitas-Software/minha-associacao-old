@@ -11,6 +11,7 @@
 	},
 	"devDependencies": {
 		"@minha-associacao/ts-config": "workspace:*",
-		"typescript": "catalog:"
+		"typescript": "catalog:",
+		"@types/node": "catalog:"
 	}
 }
