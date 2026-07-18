@@ -1,18 +1,38 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
+import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
+import { Tabs } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
-
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { AppStatusBar } from '@/components/app-status-bar';
+import { AppTabBar } from '@/components/app-tab-bar';
+import { AppThemeProvider } from '@/providers/app-theme-provider';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function TabLayout() {
-	const colorScheme = useColorScheme();
+const AppContent = () => (
+	<>
+		<AppStatusBar />
+		<Tabs tabBar={props => <AppTabBar {...props} />}>
+			<Tabs.Screen
+				name="index"
+				options={{
+					title: 'Início',
+					tabBarLabel: 'Início',
+					tabBarIcon: ({ color, size }) => (
+						<MaterialDesignIcons
+							name="home"
+							color={color}
+							size={size}
+						/>
+					),
+				}}
+			/>
+		</Tabs>
+	</>
+);
+
+export default function AppLayout() {
 	return (
-		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-			<AnimatedSplashOverlay />
-			<AppTabs />
-		</ThemeProvider>
+		<AppThemeProvider>
+			<AppContent />
+		</AppThemeProvider>
 	);
 }
