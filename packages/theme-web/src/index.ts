@@ -1,1 +1,2 @@
-export const THEME_WEB_PACKAGE_NAME = '@minha-associacao/theme-web' as const;
+export { createAppTheme } from './create-app-theme.js';
+export type { AppThemeMode } from './types.js';
