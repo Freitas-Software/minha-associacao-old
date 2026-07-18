@@ -1,5 +1,11 @@
 name: Roll back production update
 
+defaults:
+  tools:
+    node: 24.18.0
+    pnpm: 11.12.0
+    corepack: true
+
 on:
   workflow_dispatch:
     inputs:

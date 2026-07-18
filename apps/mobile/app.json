@@ -28,12 +28,9 @@
 			},
 			"predictiveBackGestureEnabled": false
 		},
-		"web": {
-			"output": "static",
-			"favicon": "./assets/images/favicon.png"
-		},
 		"plugins": [
 			"expo-router",
+			"expo-system-ui",
 			[
 				"expo-splash-screen",
 				{
@@ -41,7 +38,8 @@
 					"image": "./assets/images/splash-icon.png",
 					"imageWidth": 76
 				}
-			]
+			],
+			"@react-native-vector-icons/material-design-icons"
 		],
 		"experiments": {
 			"autolinkingModuleResolution": true,
