@@ -9,7 +9,7 @@
 		"./mobile": "./mobile.json",
 		"./node": "./node.json",
 		"./node-library": "./node-library.json",
-		"./react-library.json": "./react-library.json",
+		"./react-library": "./react-library.json",
 		"./web": "./web.json"
 	},
 	"devDependencies": {

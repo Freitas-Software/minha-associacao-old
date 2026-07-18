@@ -1,9 +1,11 @@
 {
-	"extends": "@minha-associacao/ts-config/base",
+	"extends": "@minha-associacao/ts-config/node-library",
 	"compilerOptions": {
-		"rootDir": ".",
-		"noEmit": true
+		"incremental": true,
+		"outDir": "dist",
+		"rootDir": "src",
+		"tsBuildInfoFile": "./.turbo/tsconfig.build.tsbuildinfo"
 	},
 	"include": ["src/**/*.ts"],
-	"exclude": ["node_modules", "dist"]
+	"exclude": ["dist", "node_modules"]
 }
