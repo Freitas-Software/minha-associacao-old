@@ -1,0 +1,80 @@
+name: Release production
+
+on:
+  workflow_dispatch: {}
+  push:
+    tags:
+      - v*.*.*
+      - '!v*.*.*-*'
+
+jobs:
+  validate:
+    type: custom
+    environment: production
+    steps:
+      - uses: eas/checkout
+      - uses: eas/install_node_modules
+      - name: Validate mobile project
+        working_directory: ../..
+        run: |
+          pnpm --filter @minha-associacao/mobile lint
+          pnpm --filter @minha-associacao/mobile typecheck
+          pnpm --filter @minha-associacao/mobile test
+          pnpm --filter @minha-associacao/mobile expo:check
+
+  fingerprint:
+    needs: [validate]
+    type: fingerprint
+
+  approve_release:
+    needs: [fingerprint]
+    type: require-approval
+    environment: production
+
+  get_android_build:
+    needs: [fingerprint, approve_release]
+    type: get-build
+    params:
+      platform: android
+      profile: production
+      fingerprint_hash: ${{ needs.fingerprint.outputs.android_fingerprint_hash }}
+
+  get_ios_build:
+    needs: [fingerprint, approve_release]
+    type: get-build
+    params:
+      platform: ios
+      profile: production
+      fingerprint_hash: ${{ needs.fingerprint.outputs.ios_fingerprint_hash }}
+
+  build_android:
+    needs: [get_android_build]
+    if: ${{ !needs.get_android_build.outputs.build_id }}
+    type: build
+    params:
+      platform: android
+      profile: production
+
+  build_ios:
+    needs: [get_ios_build]
+    if: ${{ !needs.get_ios_build.outputs.build_id }}
+    type: build
+    params:
+      platform: ios
+      profile: production
+
+  update_android:
+    needs: [get_android_build]
+    if: ${{ needs.get_android_build.outputs.build_id }}
+    type: update
+    params:
+      platform: android
+      branch: production
+
+  update_ios:
+    needs: [get_ios_build]
+    if: ${{ needs.get_ios_build.outputs.build_id }}
+    type: update
+    params:
+      platform: ios
+      branch: production

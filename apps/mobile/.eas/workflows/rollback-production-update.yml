@@ -1,0 +1,37 @@
+name: Roll back production update
+
+on:
+  workflow_dispatch:
+    inputs:
+      rollback_type:
+        type: choice
+        options: [republish, embedded]
+        default: republish
+      update_group_id:
+        type: string
+        required: false
+
+jobs:
+  approve_rollback:
+    type: require-approval
+    environment: production
+
+  rollback:
+    needs: [approve_rollback]
+    type: custom
+    environment: production
+    steps:
+      - uses: eas/checkout
+      - name: Execute approved rollback
+        run: |
+          if [ "${{ inputs.rollback_type }}" = "embedded" ]; then
+            pnpx eas-cli@21.0.2 update:roll-back-to-embedded --channel production --platform all --non-interactive
+            exit 0
+          fi
+
+          if ! [[ "${{ inputs.update_group_id }}" =~ ^[0-9a-fA-F-]{36}$ ]]; then
+            echo "update_group_id must be the UUID of a previously verified update group."
+            exit 1
+          fi
+
+          pnpx eas-cli@21.0.2 update:republish --group "${{ inputs.update_group_id }}" --destination-channel production --platform all --non-interactive

@@ -3,6 +3,12 @@
 		"name": "Minha Associação",
 		"slug": "minha-associacao",
 		"version": "1.0.0",
+		"runtimeVersion": {
+			"policy": "fingerprint"
+		},
+		"updates": {
+			"url": "https://u.expo.dev/2575b55f-1605-4c4f-a9e8-8b9aefa48248"
+		},
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
 		"scheme": "minha-associacao",

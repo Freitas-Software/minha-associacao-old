@@ -66,6 +66,12 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Check Expo project health
+        run: pnpm expo:check
+
+      - name: Export expo project
+        run: pnpm export
+
       - name: Test with coverage
         run: pnpm test:coverage
 
