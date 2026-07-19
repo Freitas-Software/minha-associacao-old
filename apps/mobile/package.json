@@ -19,12 +19,14 @@
 		"expo-updates": "catalog:expo",
 		"expo-web-browser": "catalog:expo",
 		"react": "catalog:react",
+		"react-dom": "catalog:react",
 		"react-native": "catalog:react-native",
 		"react-native-gesture-handler": "catalog:react-native",
 		"react-native-paper": "catalog:react-native",
 		"react-native-reanimated": "catalog:react-native",
 		"react-native-safe-area-context": "catalog:react-native",
 		"react-native-screens": "catalog:react-native",
+		"react-native-web": "catalog:react-native",
 		"react-native-worklets": "catalog:react-native"
 	},
 	"devDependencies": {

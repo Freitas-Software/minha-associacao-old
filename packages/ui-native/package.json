@@ -1,0 +1,49 @@
+{
+	"name": "@minha-associacao/ui-native",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"sideEffects": false,
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"react-native": "./src/index.ts",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"react-native": "./src/index.ts",
+			"development": "./src/index.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc --project tsconfig.json",
+		"lint": "biome lint src test vitest.config.ts",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --project tsconfig.json --noEmit --incremental false && tsc --project tsconfig.test.json --noEmit --incremental false"
+	},
+	"dependencies": {
+		"@minha-associacao/design-tokens": "workspace:*",
+		"@minha-associacao/ui-core": "workspace:*",
+		"react-native-paper": "catalog:react-native"
+	},
+	"peerDependencies": {
+		"react": ">=19.0.0",
+		"react-native": ">=0.86.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"@minha-associacao/ts-config": "workspace:*",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:react",
+		"@vitest/coverage-v8": "catalog:",
+		"react": "catalog:react",
+		"react-native": "catalog:react-native",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

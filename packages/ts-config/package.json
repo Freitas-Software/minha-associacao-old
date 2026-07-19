@@ -9,6 +9,7 @@
 		"./mobile": "./mobile.json",
 		"./node": "./node.json",
 		"./node-library": "./node-library.json",
+		"./react-native-library": "./react-native-library.json",
 		"./react-library": "./react-library.json",
 		"./web": "./web.json"
 	},
