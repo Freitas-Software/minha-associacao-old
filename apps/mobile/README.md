@@ -1,6 +1,6 @@
 # Mobile
 
-Aplicacao Expo da Minha Associacao para Android, iOS e web.
+Aplicacao Expo da Minha Associacao exclusivamente para Android e iOS.
 
 ## Ambiente
 
@@ -20,7 +20,6 @@ Execute a partir da raiz com `pnpm --filter @minha-associacao/mobile <comando>`:
 pnpm dev
 pnpm android
 pnpm ios
-pnpm web
 pnpm typecheck
 pnpm lint
 pnpm test
@@ -29,7 +28,7 @@ pnpm export
 pnpm expo:check
 ```
 
-`pnpm export` gera bundles locais em `dist/` quando necessario. Ele nao cria builds EAS nem
+`pnpm export` gera somente os bundles Android e iOS em `dist/android` e `dist/ios`. Ele nao cria builds EAS nem
 publica updates. O gate padrao (`pnpm build`) nao executa exportacao mobile porque a
 exportacao nativa ainda precisa de estabilizacao no Metro; a CI valida o app com
 `pnpm expo:check`.

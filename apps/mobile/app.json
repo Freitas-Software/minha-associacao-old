@@ -3,6 +3,7 @@
 		"name": "Minha Associação",
 		"slug": "minha-associacao",
 		"version": "1.0.0",
+		"platforms": ["ios", "android"],
 		"runtimeVersion": {
 			"policy": "fingerprint"
 		},
