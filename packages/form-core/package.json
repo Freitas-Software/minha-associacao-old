@@ -1,0 +1,47 @@
+{
+	"name": "@minha-associacao/form-core",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"sideEffects": false,
+	"main": "./src/index.ts",
+	"types": "./src/index.ts",
+	"react-native": "./src/index.ts",
+	"files": [
+		"src"
+	],
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"react-native": "./src/index.ts",
+			"development": "./src/index.ts",
+			"import": "./src/index.ts",
+			"default": "./src/index.ts"
+		}
+	},
+	"scripts": {
+		"build": "tsc --project tsconfig.json",
+		"dev": "tsc --project tsconfig.json --watch --preserveWatchOutput",
+		"lint": "biome lint src test vitest.config.ts",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"typecheck": "tsc --project tsconfig.json --noEmit --incremental false && tsc --project tsconfig.test.json --noEmit --incremental false"
+	},
+	"dependencies": {
+		"@tanstack/react-form": "catalog:"
+	},
+	"peerDependencies": {
+		"react": ">=19.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"@minha-associacao/ts-config": "workspace:*",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:react",
+		"@vitest/coverage-v8": "catalog:",
+		"react": "catalog:react",
+		"typescript": "catalog:",
+		"vitest": "catalog:",
+		"zod": "catalog:"
+	}
+}

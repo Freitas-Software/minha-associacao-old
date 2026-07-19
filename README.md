@@ -12,6 +12,7 @@ apps/
   web/       aplicacao TanStack Start
 packages/
   config/    leitura e validacao de configuracao da API
+  form-core/ fundacao compartilhada de formularios TanStack
   ts-config/ configuracoes TypeScript compartilhadas
 ```
 

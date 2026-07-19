@@ -6,6 +6,7 @@ catalog:
   "@biomejs/biome": 2.5.3
   "@react-native-vector-icons/get-image": ^13.0.0
   "@react-native-vector-icons/material-design-icons": ^13.1.2
+  "@tanstack/react-form": 1.33.2
   "@types/node": 24.13.3
   "@vitest/coverage-v8": 4.1.10
   typescript: 6.0.3
