@@ -1,9 +1,9 @@
-import { spacing } from '@minha-associacao/design-tokens';
+import { radius, spacing } from '@minha-associacao/design-tokens';
 import type { ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Card, type CardProps, Divider, Text } from 'react-native-paper';
 
-export interface AppCardProps extends Omit<CardProps, 'children' | 'elevation' | 'mode'> {
+export interface AppCardProps extends Omit<CardProps, 'children' | 'elevation' | 'mode' | 'theme'> {
 	title?: ReactNode;
 	description?: ReactNode;
 	headerAction?: ReactNode;
@@ -30,12 +30,19 @@ export function AppCard({
 	return (
 		<Card
 			{...cardProps}
-			mode={mode}>
+			mode={mode}
+			theme={{ roundness: radius.xs }}>
 			{hasHeader ? (
 				<>
 					<View style={styles.header}>
 						<View style={styles.headerCopy}>
-							{title ? <Text variant="titleMedium">{title}</Text> : null}
+							{title ? (
+								<Text
+									accessibilityRole="header"
+									variant="titleMedium">
+									{title}
+								</Text>
+							) : null}
 							{description ? <Text variant="bodyMedium">{description}</Text> : null}
 						</View>
 						{headerAction}
@@ -69,7 +76,13 @@ export function AppCardSection({ title, description, children }: AppCardSectionP
 		<View style={styles.section}>
 			{title || description ? (
 				<View style={styles.sectionCopy}>
-					{title ? <Text variant="titleSmall">{title}</Text> : null}
+					{title ? (
+						<Text
+							accessibilityRole="header"
+							variant="titleSmall">
+							{title}
+						</Text>
+					) : null}
 					{description ? <Text variant="bodySmall">{description}</Text> : null}
 				</View>
 			) : null}

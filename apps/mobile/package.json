@@ -3,7 +3,9 @@
 	"main": "expo-router/entry",
 	"version": "1.0.0",
 	"dependencies": {
+		"@minha-associacao/design-tokens": "workspace:*",
 		"@minha-associacao/theme-native": "workspace:*",
+		"@minha-associacao/ui-native": "workspace:*",
 		"@react-native-vector-icons/get-image": "catalog:",
 		"@react-native-vector-icons/material-design-icons": "catalog:",
 		"expo": "catalog:expo",
@@ -19,14 +21,12 @@
 		"expo-updates": "catalog:expo",
 		"expo-web-browser": "catalog:expo",
 		"react": "catalog:react",
-		"react-dom": "catalog:react",
 		"react-native": "catalog:react-native",
 		"react-native-gesture-handler": "catalog:react-native",
 		"react-native-paper": "catalog:react-native",
 		"react-native-reanimated": "catalog:react-native",
 		"react-native-safe-area-context": "catalog:react-native",
 		"react-native-screens": "catalog:react-native",
-		"react-native-web": "catalog:react-native",
 		"react-native-worklets": "catalog:react-native"
 	},
 	"devDependencies": {
@@ -41,7 +41,7 @@
 	"scripts": {
 		"dev": "expo start",
 		"start": "expo start",
-		"export": "expo export --platform all --output-dir dist",
+		"export": "expo export --platform android --output-dir dist/android && expo export --platform ios --output-dir dist/ios",
 		"expo:check": "expo-doctor && expo install --check && expo config --type public --json",
 		"eas:development": "pnpx eas-cli@21.0.2 workflow:run create-development-builds.yml",
 		"eas:preview": "pnpx eas-cli@21.0.2 workflow:run deliver-preview.yml",

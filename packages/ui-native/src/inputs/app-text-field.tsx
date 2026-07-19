@@ -1,6 +1,7 @@
 import { spacing } from '@minha-associacao/design-tokens';
 import type { ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { AccessibilityInfo, Platform, StyleSheet, View } from 'react-native';
 import { ActivityIndicator, HelperText, TextInput, type TextInputProps } from 'react-native-paper';
 
 type AllowedTextInputProps = Omit<
@@ -22,9 +23,23 @@ export function AppTextField({
 	helperText,
 	loading = false,
 	disabled = false,
+	accessibilityLabel,
 	accessibilityHint,
 	...textInputProps
 }: AppTextFieldProps) {
+	const supportingText = errorMessage ?? helperText;
+	const inferredAccessibilityHint =
+		accessibilityHint ?? (typeof supportingText === 'string' ? supportingText : undefined);
+	const previousErrorMessage = useRef(errorMessage);
+
+	useEffect(() => {
+		if (Platform.OS === 'ios' && errorMessage && errorMessage !== previousErrorMessage.current) {
+			AccessibilityInfo.announceForAccessibility(errorMessage);
+		}
+
+		previousErrorMessage.current = errorMessage;
+	}, [errorMessage]);
+
 	if (loading) {
 		return (
 			<View
@@ -36,15 +51,12 @@ export function AppTextField({
 		);
 	}
 
-	const supportingText = errorMessage ?? helperText;
-	const inferredAccessibilityHint =
-		accessibilityHint ?? (typeof supportingText === 'string' ? supportingText : undefined);
-
 	return (
 		<View>
 			<TextInput
 				{...textInputProps}
 				accessibilityHint={inferredAccessibilityHint}
+				accessibilityLabel={accessibilityLabel ?? (typeof label === 'string' ? label : undefined)}
 				dense
 				disabled={disabled}
 				error={Boolean(errorMessage)}

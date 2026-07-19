@@ -14,6 +14,7 @@ const AppContent = () => (
 			<Tabs.Screen
 				name="index"
 				options={{
+					headerShown: false,
 					title: 'Início',
 					tabBarLabel: 'Início',
 					tabBarIcon: ({ color, size }) => (
