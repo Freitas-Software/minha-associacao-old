@@ -27,7 +27,8 @@
 		"@tanstack/react-router-devtools": "catalog:web",
 		"@tanstack/react-router-ssr-query": "catalog:web",
 		"@tanstack/react-start": "catalog:web",
-		"zod": "catalog:"
+		"zod": "catalog:",
+		"@minha-associacao/form-web": "workspace:*"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:",

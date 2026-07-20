@@ -13,6 +13,8 @@ apps/
 packages/
   config/    leitura e validacao de configuracao da API
   form-core/ fundacao compartilhada de formularios TanStack
+  form-web/  adapters TanStack Form para os primitives web
+  ui-web/    primitives React web baseados em MUI
   ts-config/ configuracoes TypeScript compartilhadas
 ```
 

@@ -1,0 +1,14 @@
+{
+	"extends": "@minha-associacao/ts-config/react-library",
+	"compilerOptions": {
+		"declaration": true,
+		"declarationMap": true,
+		"incremental": true,
+		"noEmit": false,
+		"outDir": "dist",
+		"rootDir": "src",
+		"tsBuildInfoFile": "./.turbo/tsconfig.build.tsbuildinfo"
+	},
+	"include": ["src/**/*.ts", "src/**/*.tsx"],
+	"exclude": ["dist", "node_modules"]
+}
