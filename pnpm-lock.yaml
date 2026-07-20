@@ -254,6 +254,9 @@ importers:
       '@minha-associacao/design-tokens':
         specifier: workspace:*
         version: link:../../packages/design-tokens
+      '@minha-associacao/form-native':
+        specifier: workspace:*
+        version: link:../../packages/form-native
       '@minha-associacao/theme-native':
         specifier: workspace:*
         version: link:../../packages/theme-native
@@ -326,6 +329,9 @@ importers:
       react-native-worklets:
         specifier: catalog:react-native
         version: 0.10.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(react-native@0.86.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3)
+      zod:
+        specifier: 'catalog:'
+        version: 4.4.3
     devDependencies:
       '@biomejs/biome':
         specifier: 'catalog:'
@@ -507,6 +513,52 @@ importers:
       zod:
         specifier: 'catalog:'
         version: 4.4.3
+
+  packages/form-native:
+    dependencies:
+      '@minha-associacao/form-core':
+        specifier: workspace:*
+        version: link:../form-core
+      '@minha-associacao/ui-native':
+        specifier: workspace:*
+        version: link:../ui-native
+      '@tanstack/react-form':
+        specifier: 'catalog:'
+        version: 1.33.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+    devDependencies:
+      '@biomejs/biome':
+        specifier: 'catalog:'
+        version: 2.5.3
+      '@minha-associacao/theme-native':
+        specifier: workspace:*
+        version: link:../theme-native
+      '@minha-associacao/ts-config':
+        specifier: workspace:*
+        version: link:../ts-config
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.13.3
+      '@types/react':
+        specifier: catalog:react
+        version: 19.2.17
+      '@vitest/coverage-v8':
+        specifier: 'catalog:'
+        version: 4.1.10(vitest@4.1.10)
+      react:
+        specifier: catalog:react
+        version: 19.2.3
+      react-native:
+        specifier: catalog:react-native
+        version: 0.86.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3)
+      react-native-paper:
+        specifier: catalog:react-native
+        version: 5.15.3(react-native-safe-area-context@5.7.0(react-native@0.86.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3))(react-native@0.86.0(@babel/core@7.29.7)(@react-native/metro-config@0.86.0(@babel/core@7.29.7))(@types/react@19.2.17)(react@19.2.3))(react@19.2.3)
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.3
+      vitest:
+        specifier: 'catalog:'
+        version: 4.1.10(@types/node@24.13.3)(@vitest/coverage-v8@4.1.10)(jsdom@28.1.0(@noble/hashes@2.2.0))(vite@8.1.4(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.0)(tsx@4.23.0)(yaml@2.9.0))
 
   packages/form-web:
     dependencies:
