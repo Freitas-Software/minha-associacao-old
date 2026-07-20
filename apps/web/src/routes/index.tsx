@@ -38,7 +38,13 @@ function Home() {
 						)}
 					</form.AppField>
 					<form.AppField name="email">
-						{field => <field.TextField inputMode="email" label="E-mail" type="email" />}
+						{field => (
+							<field.TextField
+								inputMode="email"
+								label="E-mail"
+								type="email"
+							/>
+						)}
 					</form.AppField>
 					<div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
 						<form.SubmitButton loadingLabel="Salvando">Salvar</form.SubmitButton>
