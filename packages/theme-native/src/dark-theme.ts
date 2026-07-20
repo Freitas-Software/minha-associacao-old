@@ -1,14 +1,16 @@
-import { darkColors, radius } from '@minha-associacao/design-tokens';
-import { MD3DarkTheme } from 'react-native-paper';
-
-import { darkSurfaceColors } from './surface-colors.js';
-import type { NativeTheme } from './types.js';
+import { darkColors, radius } from "@minha-associacao/design-tokens";
+import { MD3DarkTheme } from "react-native-paper";
+import { nativeFonts } from "./fonts.js";
+import { darkSurfaceColors } from "./surface-colors.js";
+import type { NativeTheme } from "./types.js";
 
 export const darkNativeTheme = {
 	...MD3DarkTheme,
 
 	dark: true,
 	roundness: radius.md,
+
+	fonts: nativeFonts,
 
 	colors: {
 		...MD3DarkTheme.colors,

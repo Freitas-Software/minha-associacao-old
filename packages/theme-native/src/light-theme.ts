@@ -1,14 +1,16 @@
-import { lightColors, radius } from '@minha-associacao/design-tokens';
-import { MD3LightTheme } from 'react-native-paper';
-
-import { lightSurfaceColors } from './surface-colors.js';
-import type { NativeTheme } from './types.js';
+import { lightColors, radius } from "@minha-associacao/design-tokens";
+import { MD3LightTheme } from "react-native-paper";
+import { nativeFonts } from "./fonts.js";
+import { lightSurfaceColors } from "./surface-colors.js";
+import type { NativeTheme } from "./types.js";
 
 export const lightNativeTheme = {
 	...MD3LightTheme,
 
 	dark: false,
 	roundness: radius.md,
+
+	fonts: nativeFonts,
 
 	colors: {
 		...MD3LightTheme.colors,

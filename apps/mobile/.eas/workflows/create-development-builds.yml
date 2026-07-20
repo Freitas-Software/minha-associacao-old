@@ -19,6 +19,7 @@ jobs:
       - name: Validate mobile project
         working_directory: ../..
         run: |
+          pnpm turbo run build --filter=@minha-associacao/mobile^...
           pnpm --filter @minha-associacao/mobile lint
           pnpm --filter @minha-associacao/mobile typecheck
           pnpm --filter @minha-associacao/mobile test

@@ -4,19 +4,19 @@ import {
 	lightColors,
 	radius,
 	typography,
-} from '@minha-associacao/design-tokens';
-import { createTheme } from '@mui/material/styles';
-import { componentOverrides } from './components/index.js';
-import type { AppThemeMode } from './types.js';
+} from "@minha-associacao/design-tokens";
+import { createTheme } from "@mui/material/styles";
+import { componentOverrides } from "./components/index.js";
+import type { AppThemeMode } from "./types.js";
 
 export function createAppTheme(mode: AppThemeMode) {
-	const colors = mode === 'light' ? lightColors : darkColors;
+	const colors = mode === "light" ? lightColors : darkColors;
 
 	return createTheme({
 		components: componentOverrides,
 
 		cssVariables: {
-			cssVarPrefix: 'association',
+			cssVarPrefix: "association",
 		},
 
 		breakpoints: {
@@ -69,22 +69,33 @@ export function createAppTheme(mode: AppThemeMode) {
 		},
 
 		typography: {
-			fontFamily: typography.fontFamily.sans,
+			fontFamily: [
+				typography.fontFamily.sans,
+				"system-ui",
+				"-apple-system",
+				"BlinkMacSystemFont",
+				'"Segoe UI"',
+				"sans-serif",
+			].join(", "),
+
+			fontWeightRegular: typography.fontWeight.regular,
+			fontWeightMedium: typography.fontWeight.medium,
+			fontWeightBold: typography.fontWeight.bold,
 
 			h1: {
-				fontSize: typography.fontSize['4xl'],
+				fontSize: typography.fontSize["4xl"],
 				fontWeight: typography.fontWeight.bold,
 				lineHeight: typography.lineHeight.compact,
 			},
 
 			h2: {
-				fontSize: typography.fontSize['3xl'],
+				fontSize: typography.fontSize["3xl"],
 				fontWeight: typography.fontWeight.bold,
 				lineHeight: typography.lineHeight.compact,
 			},
 
 			h3: {
-				fontSize: typography.fontSize['2xl'],
+				fontSize: typography.fontSize["2xl"],
 				fontWeight: typography.fontWeight.semibold,
 				lineHeight: typography.lineHeight.compact,
 			},
@@ -141,7 +152,7 @@ export function createAppTheme(mode: AppThemeMode) {
 				fontSize: typography.fontSize.sm,
 				fontWeight: typography.fontWeight.semibold,
 				lineHeight: typography.lineHeight.normal,
-				textTransform: 'none',
+				textTransform: "none",
 			},
 		},
 	});

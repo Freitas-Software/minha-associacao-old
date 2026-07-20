@@ -1,7 +1,18 @@
 export const typography = {
 	fontFamily: {
-		sans: 'Geist',
-		mono: 'Geist Mono',
+		sans: "Geist",
+		mono: "Geist Mono",
+		native: {
+			sansRegular: "Geist_400Regular",
+			sansMedium: "Geist_500Medium",
+			sansSemibold: "Geist_600SemiBold",
+			sansBold: "Geist_700Bold",
+
+			monoRegular: "GeistMono_400Regular",
+			monoMedium: "GeistMono_500Medium",
+			monoSemibold: "GeistMono_600SemiBold",
+			monoBold: "GeistMono_700Bold",
+		},
 	},
 
 	fontSize: {
@@ -10,9 +21,9 @@ export const typography = {
 		md: 16,
 		lg: 18,
 		xl: 20,
-		'2xl': 24,
-		'3xl': 30,
-		'4xl': 36,
+		"2xl": 24,
+		"3xl": 30,
+		"4xl": 36,
 	},
 
 	fontWeight: {
