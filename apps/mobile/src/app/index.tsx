@@ -14,16 +14,10 @@ import { Text } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { z } from 'zod';
 
-import {
-	useAppTheme,
-	useNativeTheme,
-} from '@/providers/app-theme-provider';
+import { useAppTheme, useNativeTheme } from '@/providers/app-theme-provider';
 
 const associationSchema = z.object({
-	associationName: z
-		.string()
-		.trim()
-		.min(3, 'Informe um nome com pelo menos 3 caracteres.'),
+	associationName: z.string().trim().min(3, 'Informe um nome com pelo menos 3 caracteres.'),
 });
 
 export default function HomeScreen() {
@@ -31,7 +25,7 @@ export default function HomeScreen() {
 	const { isDark, toggleMode } = useAppTheme();
 	const [hasMembers, setHasMembers] = useState(false);
 	const [savedAssociationName, setSavedAssociationName] = useState(
-		'Associação Comunitária Esperança',
+		'Associação Comunitária Esperança'
 	);
 
 	const form = useAppForm({
@@ -58,10 +52,7 @@ export default function HomeScreen() {
 	return (
 		<SafeAreaView
 			edges={['top', 'left', 'right']}
-			style={[
-				styles.safeArea,
-				{ backgroundColor: theme.colors.background },
-			]}>
+			style={[styles.safeArea, { backgroundColor: theme.colors.background }]}>
 			<ScrollView
 				automaticallyAdjustKeyboardInsets
 				contentContainerStyle={styles.scrollContent}
@@ -91,8 +82,7 @@ export default function HomeScreen() {
 								color: theme.colors.onSurfaceVariant,
 							}}
 							variant="bodyLarge">
-							Primitives compartilhadas, acessíveis e prontas para os
-							fluxos do aplicativo.
+							Primitives compartilhadas, acessíveis e prontas para os fluxos do aplicativo.
 						</Text>
 					</View>
 
@@ -114,7 +104,7 @@ export default function HomeScreen() {
 									/>
 
 									<form.AppField name="associationName">
-										{(field) => (
+										{field => (
 											<field.TextField
 												autoCapitalize="words"
 												helperText="Use o nome público da associação."
@@ -133,9 +123,7 @@ export default function HomeScreen() {
 											Salvar alterações
 										</form.SubmitButton>
 
-										<form.ResetButton variant="ghost">
-											Restaurar
-										</form.ResetButton>
+										<form.ResetButton variant="ghost">Restaurar</form.ResetButton>
 									</View>
 								</form.Form>
 							</form.AppForm>
@@ -144,9 +132,7 @@ export default function HomeScreen() {
 						<AppCardSection
 							description="Valor confirmado após o envio válido do formulário."
 							title="Dados salvos">
-							<Text variant="bodyMedium">
-								{savedAssociationName}
-							</Text>
+							<Text variant="bodyMedium">{savedAssociationName}</Text>
 						</AppCardSection>
 					</AppCard>
 
@@ -162,16 +148,13 @@ export default function HomeScreen() {
 							}
 							title="Cadastro iniciado">
 							<Text variant="bodyMedium">
-								A mudança aparece no contexto e pode ser desfeita
-								imediatamente.
+								A mudança aparece no contexto e pode ser desfeita imediatamente.
 							</Text>
 						</AppCard>
 					) : (
 						<EmptyState
 							action={
-								<AppButton onPress={() => setHasMembers(true)}>
-									Adicionar associado
-								</AppButton>
+								<AppButton onPress={() => setHasMembers(true)}>Adicionar associado</AppButton>
 							}
 							contained
 							description="Cadastre a primeira pessoa para começar a organizar os membros."

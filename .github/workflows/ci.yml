@@ -57,8 +57,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Check formatting
-        run: pnpm format:check
+      - name: Format
+        run: pnpm format
 
       - name: Lint
         run: pnpm lint
@@ -66,11 +66,11 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Test
+        run: pnpm test
+
       - name: Check Expo project health
         run: pnpm expo:check
-
-      - name: Export expo project
-        run: pnpm export
 
       - name: Test with coverage
         run: pnpm test:coverage

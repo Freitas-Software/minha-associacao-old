@@ -9,5 +9,3 @@ declare module '@mui/material/styles' {
 		semanticColors?: SemanticColors;
 	}
 }
-
-export {};
