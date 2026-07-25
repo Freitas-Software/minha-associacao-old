@@ -9,7 +9,7 @@ describe('setServerErrors', () => {
 
 		const form = {
 			getFieldMeta: vi.fn((fieldName: string) =>
-				fieldName === 'email' ? { isTouched: false } : undefined,
+				fieldName === 'email' ? { isTouched: false } : undefined
 			),
 			setFieldMeta,
 			setErrorMap,
@@ -20,21 +20,15 @@ describe('setServerErrors', () => {
 			},
 		};
 
-		setServerErrors(
-			form as never,
-			{
-				fields: {
-					email: 'E-mail já cadastrado',
-				},
-				form: 'Não foi possível salvar',
+		setServerErrors(form as never, {
+			fields: {
+				email: 'E-mail já cadastrado',
 			},
-		);
+			form: 'Não foi possível salvar',
+		});
 
 		expect(setFieldMeta).toHaveBeenCalledOnce();
-		expect(setFieldMeta).toHaveBeenCalledWith(
-			'email',
-			expect.any(Function),
-		);
+		expect(setFieldMeta).toHaveBeenCalledWith('email', expect.any(Function));
 
 		expect(setErrorMap).toHaveBeenCalledWith({
 			onServer: {

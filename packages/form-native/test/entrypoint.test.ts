@@ -10,22 +10,19 @@ interface PackageJson {
 	};
 	files: string[];
 	main: string;
-	"react-native"?: string;
+	'react-native'?: string;
 	types: string;
 }
 
 describe('@minha-associacao/form-native entrypoint', () => {
 	it('exposes compiled production entrypoints and a source development entrypoint', async () => {
 		const packageJson = JSON.parse(
-			await readFile(
-				resolve(packageRoot, 'package.json'),
-				'utf8',
-			),
+			await readFile(resolve(packageRoot, 'package.json'), 'utf8')
 		) as PackageJson;
 
 		expect(packageJson.main).toBe('./dist/index.js');
 		expect(packageJson.types).toBe('./dist/index.d.ts');
-		expect(packageJson["react-native"]).toBe('./dist/index.js');
+		expect(packageJson['react-native']).toBe('./dist/index.js');
 
 		expect(packageJson.exports['.']).toEqual({
 			types: './dist/index.d.ts',
@@ -37,10 +34,7 @@ describe('@minha-associacao/form-native entrypoint', () => {
 	});
 
 	it('declares the expected public source exports', async () => {
-		const entrypoint = await readFile(
-			resolve(packageRoot, 'src/index.ts'),
-			'utf8',
-		);
+		const entrypoint = await readFile(resolve(packageRoot, 'src/index.ts'), 'utf8');
 
 		expect(entrypoint).toContain('useAppForm');
 		expect(entrypoint).toContain('withForm');

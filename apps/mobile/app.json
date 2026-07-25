@@ -40,7 +40,8 @@
 					"imageWidth": 76
 				}
 			],
-			"@react-native-vector-icons/material-design-icons"
+			"@react-native-vector-icons/material-design-icons",
+			"expo-web-browser"
 		],
 		"experiments": {
 			"autolinkingModuleResolution": true,
