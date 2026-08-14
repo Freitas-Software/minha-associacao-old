@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"declaration": false,
 		"declarationMap": false,
+		"customConditions": ["development"],
 		"incremental": true,
 		"outDir": "dist",
 		"rootDir": "src",
