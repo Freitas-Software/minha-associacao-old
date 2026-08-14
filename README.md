@@ -12,11 +12,14 @@ apps/
   web/       aplicacao TanStack Start
 packages/
   config/    leitura e validacao de configuracao da API
+  design-tokens/ contratos e foundations visuais compartilhados
   form-core/ fundacao compartilhada de formularios TanStack
-  form-web/  adapters TanStack Form para os primitives web
-  ui-web/    primitives React web baseados em MUI
   ts-config/ configuracoes TypeScript compartilhadas
 ```
+
+Os componentes e temas não são pacotes compartilhados: o web mantém seu sistema
+shadcn/ui em `apps/web/src`, e o mobile mantém sua camada React Native Paper em
+`apps/mobile/src`. Isso evita que detalhes de uma plataforma vazem para a outra.
 
 O workspace usa pnpm para dependencias e Turborepo para ordenar e armazenar em cache as
 tarefas. Dependencias internas devem sempre usar o protocolo `workspace:`.

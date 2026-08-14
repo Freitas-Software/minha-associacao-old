@@ -14,7 +14,7 @@ decision supersedes the older React Hook Form reference in the UI system guide.
 - Future `form-web` and `form-native` packages will bind those contexts to their own visual
   components with `createFormHook`.
 - Base inputs remain independent from TanStack Form and usable outside a form.
-- DOM events, React Native events, MUI props and React Native Paper props never cross the platform
+- Eventos DOM, eventos React Native e props de bibliotecas de UI nunca cruzam a fronteira do pacote
   boundary.
 - Schemas and payload types may be shared; rendered fields and platform behavior may not.
 - The package is source-first so Vite and Metro compile the same TypeScript entrypoint without
@@ -98,9 +98,12 @@ of the platform adapters.
 
 ## Follow-up milestones
 
-`feat/form-web` will add MUI bindings, DOM events, accessible descriptions, focus behavior and web
-interaction tests. `feat/form-native` will add React Native Paper bindings, native events, keyboard
-and scroll behavior, announcements and device-oriented tests. Neither milestone should replace the
-shared contexts or couple the base UI primitives to TanStack Form. Both adapters must use granular
-subscriptions and include render-count checks where they provide evidence against unnecessary
-rerenders.
+Os adaptadores de formulário web vivem em `apps/web/src`, junto dos componentes shadcn/ui. Eles
+adicionam eventos DOM, descrições acessíveis, foco e comportamento de plataforma sem fazer o
+`form-core` depender do renderizador.
+
+Os adaptadores mobile vivem em `apps/mobile/src`, junto dos componentes React Native Paper. Eles
+adicionam eventos nativos, teclado, rolagem, anúncios e testes orientados a dispositivos. Nenhum
+adapter deve substituir os contextos compartilhados ou acoplar os primitives de UI ao TanStack
+Form. Quando houver subscribers, eles devem ser granulares e justificar qualquer teste de
+contagem de renderizações.

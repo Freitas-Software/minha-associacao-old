@@ -17,9 +17,10 @@
 		"check": "biome check ."
 	},
 	"dependencies": {
-		"better-auth": "catalog:web",
-		"react": "catalog:react",
-		"react-dom": "catalog:react",
+		"@radix-ui/react-checkbox": "catalog:",
+		"@radix-ui/react-radio-group": "catalog:",
+		"@radix-ui/react-slot": "catalog:",
+		"@radix-ui/react-switch": "catalog:",
 		"@tanstack/react-devtools": "catalog:web",
 		"@tanstack/react-query": "catalog:web",
 		"@tanstack/react-query-devtools": "catalog:web",
@@ -27,8 +28,16 @@
 		"@tanstack/react-router-devtools": "catalog:web",
 		"@tanstack/react-router-ssr-query": "catalog:web",
 		"@tanstack/react-start": "catalog:web",
-		"zod": "catalog:",
-		"@minha-associacao/form-web": "workspace:*"
+		"better-auth": "catalog:web",
+		"class-variance-authority": "catalog:",
+		"clsx": "catalog:",
+		"lucide-react": "catalog:",
+		"react": "catalog:react",
+		"react-dom": "catalog:react",
+		"shadcn": "catalog:",
+		"tailwind-merge": "catalog:",
+		"tw-animate-css": "catalog:",
+		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:",

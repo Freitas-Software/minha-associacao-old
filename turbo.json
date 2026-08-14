@@ -28,6 +28,7 @@
 		},
 		"@minha-associacao/mobile#dev": {
 			"cache": false,
+			"dependsOn": ["^build"],
 			"passThroughEnv": ["EXPO_PUBLIC_API_URL"],
 			"persistent": true
 		},
