@@ -51,10 +51,9 @@ export const organizationDocuments = pgTable(
 		uploaded_by_user_id: text()
 			.notNull()
 			.references(() => users.id, { onDelete: 'restrict' }),
-		replaces_document_id: text().references(
-			(): AnyPgColumn => organizationDocuments.id,
-			{ onDelete: 'restrict' }
-		),
+		replaces_document_id: text().references((): AnyPgColumn => organizationDocuments.id, {
+			onDelete: 'restrict',
+		}),
 		created_at: timestamp({ withTimezone: true }).notNull().defaultNow(),
 	},
 	table => [

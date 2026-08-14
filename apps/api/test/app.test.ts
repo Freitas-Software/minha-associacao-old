@@ -1,6 +1,6 @@
 import { createConfig } from '@minha-associacao/config';
 import type { FastifyInstance } from 'fastify';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { buildApp, createLoggerOptions } from '../src/app.js';
 
 let app: FastifyInstance | undefined;
@@ -25,6 +25,35 @@ describe('API', () => {
 		expect(response.statusCode).toBe(200);
 		expect(response.json()).toEqual({ status: 'ok' });
 		expect(response.headers['x-content-type-options']).toBe('nosniff');
+	});
+
+	it('checks the database on the readiness endpoint', async () => {
+		const query = vi.fn().mockResolvedValue({ rows: [{ ok: 1 }] });
+		app = buildApp({
+			config: createConfig({ NODE_ENV: 'test' }),
+			database: { pool: { query } } as never,
+			logger: false,
+		});
+
+		const response = await app.inject({ method: 'GET', url: '/api/readiness' });
+
+		expect(response.statusCode).toBe(200);
+		expect(response.json()).toMatchObject({ status: 'ok', database: { status: 'ok' } });
+		expect(query).toHaveBeenCalledWith('select 1 as ok');
+	});
+
+	it('returns 503 when the database is not ready', async () => {
+		const query = vi.fn().mockRejectedValue(new Error('database unavailable'));
+		app = buildApp({
+			config: createConfig({ NODE_ENV: 'test' }),
+			database: { pool: { query } } as never,
+			logger: false,
+		});
+
+		const response = await app.inject({ method: 'GET', url: '/api/readiness' });
+
+		expect(response.statusCode).toBe(503);
+		expect(response.json()).toEqual({ status: 'error' });
 	});
 
 	it('only emits CORS credentials for configured origins', async () => {

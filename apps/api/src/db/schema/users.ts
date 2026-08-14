@@ -6,7 +6,7 @@ export const users = pgTable(
 	'users',
 	{
 		id: text().primaryKey(),
-		cpf: text().notNull().unique(),
+		document_number: text().notNull().unique(),
 		name: text(),
 		email: text(),
 		phone: text(),

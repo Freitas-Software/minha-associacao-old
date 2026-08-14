@@ -6,6 +6,7 @@ import fastifyRateLimit from '@fastify/rate-limit';
 import { type Config, createConfig } from '@minha-associacao/config';
 import fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastify';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
+import { createDatabaseClient, type DatabaseClient, pingDatabase } from './db/client.js';
 
 const REDACTED_LOG_PATHS = [
 	'req.headers.authorization',
@@ -30,6 +31,7 @@ type LoggerOptions = Exclude<FastifyLoggerOption, boolean>;
 
 export interface BuildAppOptions {
 	config?: Config;
+	database?: DatabaseClient;
 	logger?: FastifyLoggerOption;
 }
 
@@ -64,6 +66,17 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
 
 	app.setValidatorCompiler(validatorCompiler);
 	app.setSerializerCompiler(serializerCompiler);
+
+	const database =
+		options.database ??
+		(process.env.DATABASE_URL ? createDatabaseClient(process.env.DATABASE_URL) : undefined);
+	app.decorate('database', database);
+	app.decorate('pingDatabase', pingDatabase);
+	if (!options.database && database) {
+		app.addHook('onClose', async () => {
+			await database.close();
+		});
+	}
 
 	app.register(fastifyHelmet);
 	app.register(fastifyRateLimit, {

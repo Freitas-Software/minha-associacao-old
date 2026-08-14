@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { createDatabaseClient } from './client.js';
+import { createDatabaseClient, pingDatabase } from './client.js';
 
 if (!process.env.DATABASE_URL) {
 	throw new Error('DATABASE_URL is required');
@@ -7,7 +7,9 @@ if (!process.env.DATABASE_URL) {
 
 const database = createDatabaseClient(process.env.DATABASE_URL);
 
-await database.pool.query('select 1 as ok');
-await database.close();
-
-console.log('Database connection OK');
+try {
+	const result = await pingDatabase(database);
+	console.log(`Database connection OK (${result.latencyMs} ms)`);
+} finally {
+	await database.close();
+}

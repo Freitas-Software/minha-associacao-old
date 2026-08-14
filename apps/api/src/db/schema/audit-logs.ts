@@ -17,7 +17,10 @@ export const auditLogs = pgTable(
 		created_at: timestamp({ withTimezone: true }).notNull().defaultNow(),
 	},
 	table => [
-		index('audit_logs_organization_created_at_index').on(table.organization_id, table.created_at.desc()),
+		index('audit_logs_organization_created_at_index').on(
+			table.organization_id,
+			table.created_at.desc()
+		),
 		index('audit_logs_entity_index').on(table.entity_type, table.entity_id),
 	]
 );
