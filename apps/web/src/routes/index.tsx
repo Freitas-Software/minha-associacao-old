@@ -1,57 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useAppForm } from '@minha-associacao/form-web';
-import { z } from 'zod';
+import { AppHeading, AppText } from '@/components/ui/app-primitives';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 export const Route = createFileRoute('/')({ component: Home });
 
-const fixtureSchema = z.object({
-	email: z.email('Informe um e-mail válido para continuar'),
-	name: z.string().min(2, 'Informe o nome completo da associação'),
-});
-
 function Home() {
-	const form = useAppForm({
-		defaultState: { submissionAttempts: 1 },
-		defaultValues: { email: '', name: '' },
-		validators: { onMount: fixtureSchema, onSubmit: fixtureSchema },
-	});
-
 	return (
-		<main
-			style={{
-				inlineSize: 'min(100%, 40rem)',
-				marginInline: 'auto',
-				padding: 'clamp(1rem, 4vw, 3rem)',
-			}}>
-			<h1>Fixture responsiva de formulário web</h1>
-			<form.AppForm>
-				<form.Form
-					aria-label="Cadastro de contato"
-					style={{ display: 'grid', gap: '1rem' }}>
-					<form.ErrorSummary fieldLabels={{ email: 'E-mail', name: 'Nome' }} />
-					<form.AppField name="name">
-						{field => (
-							<field.TextField
-								helperText="Use o nome público pelo qual a organização é reconhecida na comunidade."
-								label="Nome"
-							/>
-						)}
-					</form.AppField>
-					<form.AppField name="email">
-						{field => (
-							<field.TextField
-								inputMode="email"
-								label="E-mail"
-								type="email"
-							/>
-						)}
-					</form.AppField>
-					<div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-						<form.SubmitButton loadingLabel="Salvando">Salvar</form.SubmitButton>
-						<form.ResetButton>Limpar</form.ResetButton>
-					</div>
-				</form.Form>
-			</form.AppForm>
+		<main className="relative mx-auto flex min-h-screen w-full max-w-3xl items-center bg-background px-6 py-12 text-foreground">
+			<div className="absolute right-4 top-4 sm:right-6 sm:top-6">
+				<ThemeToggle />
+			</div>
+			<div className="space-y-3">
+				<AppHeading level={1}>Minha Associação</AppHeading>
+				<AppText
+					className="max-w-xl text-lg"
+					tone="secondary">
+					Uma plataforma inteligente de gestão de associações rurais.
+				</AppText>
+			</div>
 		</main>
 	);
 }

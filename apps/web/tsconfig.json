@@ -1,4 +1,11 @@
 {
 	"extends": "@minha-associacao/ts-config/web",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"ignoreDeprecations": "6.0",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
 	"include": ["**/*.ts", "**/*.tsx"]
 }

@@ -1,14 +1,20 @@
-import { createNativeTheme, type NativeThemeMode } from '@minha-associacao/theme-native';
+import {
+	resolveThemeId,
+	type ThemeMode,
+	type ThemePreference,
+} from '@minha-associacao/design-tokens';
+import { ThemeProvider } from 'expo-router';
 import * as SystemUI from 'expo-system-ui';
 import type React from 'react';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useColorScheme } from 'react-native';
 import { PaperProvider, useTheme } from 'react-native-paper';
-
-export type ThemePreference = 'system' | NativeThemeMode;
+import type { MinhaAssociacaoPaperTheme } from '@/theme/create-paper-theme';
+import { createNavigationTheme } from '@/theme/create-navigation-theme';
+import { paperThemes } from '@/theme/paper-themes';
 
 interface AppThemeContextValue {
-	mode: NativeThemeMode;
+	mode: ThemeMode;
 	preference: ThemePreference;
 	isDark: boolean;
 	setPreference: (preference: ThemePreference) => void;
@@ -20,12 +26,8 @@ const AppThemeContext = createContext<AppThemeContextValue | null>(null);
 function resolveThemeMode(
 	preference: ThemePreference,
 	systemColorScheme: ReturnType<typeof useColorScheme>
-): NativeThemeMode {
-	if (preference !== 'system') {
-		return preference;
-	}
-
-	return systemColorScheme === 'dark' ? 'dark' : 'light';
+): ThemeMode {
+	return resolveThemeId(preference, systemColorScheme === 'dark' ? 'dark' : 'light');
 }
 
 export const AppThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
@@ -33,11 +35,15 @@ export const AppThemeProvider: React.FC<React.PropsWithChildren> = ({ children }
 	const [preference, setPreference] = useState<ThemePreference>('system');
 	const mode = resolveThemeMode(preference, systemColorScheme);
 
-	const theme = useMemo(() => createNativeTheme(mode), [mode]);
+	const theme = useMemo(() => paperThemes[mode], [mode]);
+	const navigationTheme = useMemo(
+		() => createNavigationTheme(theme.minhaAssociacao),
+		[theme.minhaAssociacao]
+	);
 
 	useEffect(() => {
-		void SystemUI.setBackgroundColorAsync(theme.colors.background);
-	}, [theme.colors.background]);
+		void SystemUI.setBackgroundColorAsync(theme.minhaAssociacao.colors.canvas);
+	}, [theme.minhaAssociacao.colors.canvas]);
 
 	const toggleMode = useCallback(() => {
 		setPreference(currentPreference =>
@@ -58,7 +64,9 @@ export const AppThemeProvider: React.FC<React.PropsWithChildren> = ({ children }
 
 	return (
 		<AppThemeContext.Provider value={contextValue}>
-			<PaperProvider theme={theme}>{children}</PaperProvider>
+			<PaperProvider theme={theme}>
+				<ThemeProvider value={navigationTheme}>{children}</ThemeProvider>
+			</PaperProvider>
 		</AppThemeContext.Provider>
 	);
 };
@@ -74,5 +82,5 @@ export function useAppTheme() {
 }
 
 export function useNativeTheme() {
-	return useTheme<ReturnType<typeof createNativeTheme>>();
+	return useTheme<MinhaAssociacaoPaperTheme>();
 }

@@ -1,11 +1,12 @@
-import MaterialDesignIcons from '@react-native-vector-icons/material-design-icons';
 import { useFonts } from 'expo-font';
-import { Tabs } from 'expo-router';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { AppStatusBar } from '@/components/app-status-bar';
-import { AppTabBar } from '@/components/app-tab-bar';
+import { useAuth } from '@/hooks/use-auth';
+import { useMinhaAssociacaoTheme } from '@/hooks/use-minha-associacao-theme';
 import { AppThemeProvider } from '@/providers/app-theme-provider';
+import { AuthProvider } from '@/providers/auth-provider';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -34,24 +35,37 @@ export default function AppLayout() {
 
 	return (
 		<AppThemeProvider>
-			<AppStatusBar />
-			<Tabs tabBar={props => <AppTabBar {...props} />}>
-				<Tabs.Screen
-					name="index"
-					options={{
-						headerShown: false,
-						title: 'Início',
-						tabBarLabel: 'Início',
-						tabBarIcon: ({ color, size }) => (
-							<MaterialDesignIcons
-								name="home"
-								color={color}
-								size={size}
-							/>
-						),
-					}}
-				/>
-			</Tabs>
+			<AuthProvider>
+				<AppStatusBar />
+				<RootNavigator />
+			</AuthProvider>
 		</AppThemeProvider>
+	);
+}
+
+function RootNavigator() {
+	const { session, isLoading } = useAuth();
+	const { colors } = useMinhaAssociacaoTheme().minhaAssociacao;
+
+	if (isLoading) return null;
+
+	const isAuthenticated = session !== null;
+
+	return (
+		<Stack
+			screenOptions={{
+				contentStyle: { backgroundColor: colors.canvas },
+				headerShown: false,
+			}}>
+			<Stack.Screen name="index" />
+
+			<Stack.Protected guard={!isAuthenticated}>
+				<Stack.Screen name="(auth)" />
+			</Stack.Protected>
+
+			<Stack.Protected guard={isAuthenticated}>
+				<Stack.Screen name="(authenticated)" />
+			</Stack.Protected>
+		</Stack>
 	);
 }

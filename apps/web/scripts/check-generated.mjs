@@ -1,5 +1,5 @@
-import { readFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
 
 const workspaceDirectory = new URL('../', import.meta.url);
 const generatedFile = new URL('../src/routeTree.gen.ts', import.meta.url);
