@@ -29,11 +29,7 @@ export default function OrganizacoesScreen() {
 			{__DEV__ ? (
 				<AppCard
 					description="Ambiente local para validar os fluxos do aplicativo."
-					footer={
-						<AppButton onPress={openDevelopmentOrganizacao}>
-							Abrir associação
-						</AppButton>
-					}
+					footer={<AppButton onPress={openDevelopmentOrganizacao}>Abrir associação</AppButton>}
 					headerAction={<AppAvatar label="AD" />}
 					title="Associação de desenvolvimento">
 					<AppText tone="secondary">Disponível somente durante o desenvolvimento.</AppText>

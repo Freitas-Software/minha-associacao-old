@@ -1,11 +1,5 @@
 import { router } from 'expo-router';
-import {
-	AppButton,
-	AppIcon,
-	AppScreen,
-	AppScreenHeader,
-	EmptyState,
-} from '@/components/ui';
+import { AppButton, AppIcon, AppScreen, AppScreenHeader, EmptyState } from '@/components/ui';
 
 export default function CriarOrganizacaoScreen() {
 	return (
