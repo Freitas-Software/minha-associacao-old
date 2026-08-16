@@ -21,6 +21,14 @@ export class Config {
 		return this.#environment.DATABASE_URL;
 	}
 
+	public get authBaseUrl(): string | undefined {
+		return this.#environment.BETTER_AUTH_URL;
+	}
+
+	public get authSecret(): string | undefined {
+		return this.#environment.BETTER_AUTH_SECRET;
+	}
+
 	public get host(): string {
 		return this.#environment.HOST;
 	}
@@ -55,5 +63,21 @@ export class Config {
 		}
 
 		return this.databaseUrl;
+	}
+
+	public requireAuthBaseUrl(): string {
+		if (!this.authBaseUrl) {
+			throw new Error('BETTER_AUTH_URL is required');
+		}
+
+		return this.authBaseUrl;
+	}
+
+	public requireAuthSecret(): string {
+		if (!this.authSecret) {
+			throw new Error('BETTER_AUTH_SECRET is required');
+		}
+
+		return this.authSecret;
 	}
 }

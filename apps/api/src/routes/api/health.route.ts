@@ -27,7 +27,7 @@ const healthRoute: FastifyPluginAsyncZod = async app => {
 	);
 
 	app.get(
-		'/readiness',
+		'/ready',
 		{
 			schema: {
 				response: {

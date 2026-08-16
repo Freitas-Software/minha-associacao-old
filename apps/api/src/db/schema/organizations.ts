@@ -1,10 +1,13 @@
 import { pgTable, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core';
+import { createId } from '../ids.js';
 import { organizationStatusEnum } from './enums.js';
 
 export const organizations = pgTable(
 	'organizations',
 	{
-		id: text().primaryKey(),
+		id: text()
+			.primaryKey()
+			.$defaultFn(() => createId('organization')),
 		name: text().notNull(),
 		abbreviation: text().notNull(),
 		document_number: text().notNull(),

@@ -55,6 +55,8 @@ Variaveis principais:
 | API | `HOST` | Interface de rede da API |
 | API | `PORT` | Porta HTTP da API |
 | API | `CORS_ALLOWED_ORIGINS` | Origens permitidas, separadas por virgula |
+| API | `BETTER_AUTH_URL` | URL publica da API usada pelo Better Auth |
+| API | `BETTER_AUTH_SECRET` | Segredo de alta entropia com pelo menos 32 caracteres |
 | Web | `VITE_API_URL` | URL publica da API usada pelo navegador |
 | Mobile | `EXPO_PUBLIC_API_URL` | URL publica da API usada pelo aplicativo |
 

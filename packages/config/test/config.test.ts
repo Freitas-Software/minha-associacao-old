@@ -86,4 +86,18 @@ describe('Config', () => {
 		expect(() => withoutDatabase.requireDatabaseUrl()).toThrow('DATABASE_URL is required');
 		expect(withDatabase.requireDatabaseUrl()).toBe('postgres://user:password@localhost:5432/app');
 	});
+
+	it('exposes validated Better Auth settings only through Config', () => {
+		const withoutAuth = createConfig({ NODE_ENV: 'test' });
+		const withAuth = createConfig({
+			BETTER_AUTH_URL: 'https://api.example.com',
+			BETTER_AUTH_SECRET: 'a-high-entropy-secret-with-32-characters',
+		});
+
+		expect(() => withoutAuth.requireAuthBaseUrl()).toThrow('BETTER_AUTH_URL is required');
+		expect(() => withoutAuth.requireAuthSecret()).toThrow('BETTER_AUTH_SECRET is required');
+		expect(withAuth.requireAuthBaseUrl()).toBe('https://api.example.com');
+		expect(withAuth.requireAuthSecret()).toBe('a-high-entropy-secret-with-32-characters');
+		expect(() => createConfig({ BETTER_AUTH_SECRET: 'too-short' })).toThrow();
+	});
 });

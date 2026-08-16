@@ -9,6 +9,7 @@ import {
 	text,
 	timestamp,
 } from 'drizzle-orm/pg-core';
+import { createId } from '../ids.js';
 import { organizationDocumentTypeEnum, storedFileStatusEnum } from './enums.js';
 import { organizations } from './organizations.js';
 import { users } from './users.js';
@@ -16,7 +17,9 @@ import { users } from './users.js';
 export const storedFiles = pgTable(
 	'stored_files',
 	{
-		id: text().primaryKey(),
+		id: text()
+			.primaryKey()
+			.$defaultFn(() => createId('storedFile')),
 		object_key: text().notNull().unique(),
 		public_url: text().notNull().unique(),
 		original_file_name: text().notNull(),
@@ -40,7 +43,9 @@ export const storedFiles = pgTable(
 export const organizationDocuments = pgTable(
 	'organization_documents',
 	{
-		id: text().primaryKey(),
+		id: text()
+			.primaryKey()
+			.$defaultFn(() => createId('organizationDocument')),
 		organization_id: text()
 			.notNull()
 			.references(() => organizations.id, { onDelete: 'restrict' }),

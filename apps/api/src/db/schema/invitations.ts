@@ -1,5 +1,6 @@
 import { sql } from 'drizzle-orm';
 import { check, pgTable, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core';
+import { createId } from '../ids.js';
 import { invitationChannelEnum } from './enums.js';
 import { memberships } from './memberships.js';
 import { users } from './users.js';
@@ -7,7 +8,9 @@ import { users } from './users.js';
 export const invitations = pgTable(
 	'invitations',
 	{
-		id: text().primaryKey(),
+		id: text()
+			.primaryKey()
+			.$defaultFn(() => createId('invitation')),
 		membership_id: text()
 			.notNull()
 			.references(() => memberships.id, { onDelete: 'restrict' }),

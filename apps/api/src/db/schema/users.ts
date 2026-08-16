@@ -1,11 +1,15 @@
 import { sql } from 'drizzle-orm';
 import { date, pgTable, text, timestamp, uniqueIndex } from 'drizzle-orm/pg-core';
+import { user as authUser } from './better-auth.js';
 import { userStatusEnum } from './enums.js';
 
 export const users = pgTable(
 	'users',
 	{
 		id: text().primaryKey(),
+		auth_user_id: text()
+			.unique()
+			.references(() => authUser.id, { onDelete: 'set null' }),
 		document_number: text().notNull().unique(),
 		name: text(),
 		email: text(),

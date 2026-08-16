@@ -21,11 +21,14 @@
 		"db:ping": "tsx src/db/ping.ts"
 	},
 	"dependencies": {
+		"@better-auth/drizzle-adapter": "catalog:",
+		"@better-auth/expo": "catalog:",
 		"@fastify/autoload": "catalog:api",
 		"@fastify/cors": "catalog:api",
 		"@fastify/helmet": "catalog:api",
 		"@fastify/rate-limit": "catalog:api",
 		"@minha-associacao/config": "workspace:*",
+		"better-auth": "catalog:",
 		"drizzle-orm": "0.45.2",
 		"fastify": "catalog:api",
 		"fastify-type-provider-zod": "catalog:api",
