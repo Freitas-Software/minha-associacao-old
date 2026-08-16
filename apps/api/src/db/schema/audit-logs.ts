@@ -1,11 +1,14 @@
 import { index, jsonb, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
+import { createId } from '../ids.js';
 import { organizations } from './organizations.js';
 import { users } from './users.js';
 
 export const auditLogs = pgTable(
 	'audit_logs',
 	{
-		id: text().primaryKey(),
+		id: text()
+			.primaryKey()
+			.$defaultFn(() => createId('auditLog')),
 		organization_id: text()
 			.notNull()
 			.references(() => organizations.id, { onDelete: 'restrict' }),

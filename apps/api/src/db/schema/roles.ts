@@ -7,6 +7,7 @@ import {
 	timestamp,
 	uniqueIndex,
 } from 'drizzle-orm/pg-core';
+import { createId } from '../ids.js';
 import { roleStatusEnum } from './enums.js';
 import { memberships } from './memberships.js';
 import { organizations } from './organizations.js';
@@ -14,7 +15,9 @@ import { organizations } from './organizations.js';
 export const roles = pgTable(
 	'roles',
 	{
-		id: text().primaryKey(),
+		id: text()
+			.primaryKey()
+			.$defaultFn(() => createId('role')),
 		organization_id: text()
 			.notNull()
 			.references(() => organizations.id, { onDelete: 'restrict' }),
@@ -45,7 +48,9 @@ export const membershipRoles = pgTable(
 );
 
 export const boardMembers = pgTable('board_members', {
-	id: text().primaryKey(),
+	id: text()
+		.primaryKey()
+		.$defaultFn(() => createId('boardMember')),
 	membership_id: text()
 		.notNull()
 		.unique()

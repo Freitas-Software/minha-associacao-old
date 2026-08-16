@@ -1,4 +1,5 @@
 export * from './audit-logs.js';
+export * from './better-auth.js';
 export * from './enums.js';
 export * from './files.js';
 export * from './invitations.js';

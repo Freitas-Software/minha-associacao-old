@@ -7,18 +7,26 @@ import { type Config, createConfig } from '@minha-associacao/config';
 import fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastify';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
 import { createDatabaseClient, type DatabaseClient, pingDatabase } from './db/client.js';
+import { type AppAuth, createAuth } from './lib/auth.js';
 
 const REDACTED_LOG_PATHS = [
 	'req.headers.authorization',
 	'req.headers.cookie',
+
 	'req.body.password',
+	'req.body.username',
+
 	'req.body.token',
 	'req.body.accessToken',
 	'req.body.refreshToken',
 	'req.body.clientSecret',
 	'req.body.privateKey',
+
 	'res.headers.set-cookie',
+
 	'body.password',
+	'body.username',
+
 	'body.token',
 	'body.accessToken',
 	'body.refreshToken',
@@ -32,6 +40,7 @@ type LoggerOptions = Exclude<FastifyLoggerOption, boolean>;
 export interface BuildAppOptions {
 	config?: Config;
 	database?: DatabaseClient;
+	auth?: AppAuth;
 	logger?: FastifyLoggerOption;
 }
 
@@ -76,6 +85,17 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
 			await database.close();
 		});
 	}
+
+	const auth =
+		options.auth ??
+		(database?.db
+			? createAuth(database.db, {
+					baseUrl: config.requireAuthBaseUrl(),
+					secret: config.requireAuthSecret(),
+					trustedOrigins: [...config.corsAllowedOrigins],
+				})
+			: undefined);
+	app.decorate('auth', auth);
 
 	app.register(fastifyHelmet);
 	app.register(fastifyRateLimit, {

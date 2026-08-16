@@ -25,6 +25,8 @@ services:
     environment:
       CORS_ALLOWED_ORIGINS: "${CORS_ALLOWED_ORIGINS:-http://localhost:3000}"
       DATABASE_URL: "postgresql://${POSTGRES_USER:-minha_associacao}:${POSTGRES_PASSWORD:-minha_associacao}@postgres:5432/${POSTGRES_DB:-minha_associacao}"
+      BETTER_AUTH_URL: "${BETTER_AUTH_URL:-http://localhost:3001}"
+      BETTER_AUTH_SECRET: "${BETTER_AUTH_SECRET:-local-development-secret-change-me}"
       HOST: 0.0.0.0
       NODE_ENV: production
       PORT: 8080

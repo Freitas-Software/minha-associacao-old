@@ -4,12 +4,10 @@
 	"version": "1.0.0",
 	"dependencies": {
 		"@minha-associacao/design-tokens": "workspace:*",
-		"@react-native-vector-icons/get-image": "catalog:react-native",
 		"@react-native-vector-icons/material-design-icons": "catalog:react-native",
 		"expo": "~57.0.12",
 		"expo-constants": "~57.0.10",
 		"expo-dev-client": "~57.0.11",
-		"expo-device": "catalog:expo",
 		"expo-font": "catalog:expo",
 		"expo-image": "catalog:expo",
 		"expo-linking": "catalog:expo",
@@ -25,8 +23,7 @@
 		"react-native-reanimated": "catalog:react-native",
 		"react-native-safe-area-context": "catalog:react-native",
 		"react-native-screens": "catalog:react-native",
-		"react-native-worklets": "catalog:react-native",
-		"zod": "catalog:"
+		"react-native-worklets": "catalog:react-native"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:",

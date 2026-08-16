@@ -35,7 +35,7 @@ describe('API', () => {
 			logger: false,
 		});
 
-		const response = await app.inject({ method: 'GET', url: '/api/readiness' });
+		const response = await app.inject({ method: 'GET', url: '/api/ready' });
 
 		expect(response.statusCode).toBe(200);
 		expect(response.json()).toMatchObject({ status: 'ok', database: { status: 'ok' } });
@@ -50,7 +50,7 @@ describe('API', () => {
 			logger: false,
 		});
 
-		const response = await app.inject({ method: 'GET', url: '/api/readiness' });
+		const response = await app.inject({ method: 'GET', url: '/api/ready' });
 
 		expect(response.statusCode).toBe(503);
 		expect(response.json()).toEqual({ status: 'error' });
@@ -62,7 +62,7 @@ describe('API', () => {
 			logger: false,
 		});
 
-		const response = await app.inject({ method: 'GET', url: '/api/readiness' });
+		const response = await app.inject({ method: 'GET', url: '/api/ready' });
 
 		expect(response.statusCode).toBe(503);
 		expect(response.json()).toEqual({ status: 'error' });

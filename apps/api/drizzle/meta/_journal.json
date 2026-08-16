@@ -8,6 +8,27 @@
       "when": 1786659647435,
       "tag": "0000_domain-schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1786892602052,
+      "tag": "0001_quiet_gravity",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1786895147772,
+      "tag": "0002_fast_marvel_boy",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1786895179929,
+      "tag": "0003_condemned_hulk",
+      "breakpoints": true
     }
   ]
 }

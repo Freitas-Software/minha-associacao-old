@@ -28,6 +28,8 @@ export const envSchema = z.object({
 			message: 'DATABASE_URL must use the postgres or postgresql protocol',
 		})
 		.optional(),
+	BETTER_AUTH_URL: z.url().optional(),
+	BETTER_AUTH_SECRET: z.string().min(32).optional(),
 });
 
 export type EnvSchema = z.infer<typeof envSchema>;

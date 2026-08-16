@@ -1,11 +1,14 @@
 import { sql } from 'drizzle-orm';
 import { check, index, pgTable, primaryKey, text } from 'drizzle-orm/pg-core';
+import { createId } from '../ids.js';
 import { roles } from './roles.js';
 
 export const permissions = pgTable(
 	'permissions',
 	{
-		id: text().primaryKey(),
+		id: text()
+			.primaryKey()
+			.$defaultFn(() => createId('permission')),
 		code: text().notNull().unique(),
 	},
 	table => [

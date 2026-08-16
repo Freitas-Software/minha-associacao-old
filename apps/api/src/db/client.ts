@@ -4,6 +4,8 @@ import * as schema from './schema/index.js';
 
 const DEFAULT_DATABASE_PING_TIMEOUT_MS = 5_000;
 
+export type Database = NodePgDatabase<typeof schema>;
+
 export interface DatabaseClient {
 	readonly pool: Pool;
 	readonly db: NodePgDatabase<typeof schema>;
