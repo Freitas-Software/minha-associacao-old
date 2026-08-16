@@ -3,18 +3,34 @@ import type { EnvSchema } from './loaders/index.js';
 const DEVELOPMENT_ORIGINS = ['http://localhost:3000', 'http://localhost:8081'];
 
 export class Config {
-	public readonly corsAllowedOrigins: ReadonlySet<string>;
-	public readonly host: string;
-	public readonly nodeEnv: EnvSchema['NODE_ENV'];
-	public readonly port: number;
+	readonly #corsAllowedOrigins: ReadonlySet<string>;
+	readonly #environment: EnvSchema;
 
 	public constructor(environment: EnvSchema) {
-		this.host = environment.HOST;
-		this.nodeEnv = environment.NODE_ENV;
-		this.port = environment.PORT;
+		this.#environment = environment;
 
 		const defaultOrigins = this.isDevelopment ? DEVELOPMENT_ORIGINS : [];
-		this.corsAllowedOrigins = new Set([...defaultOrigins, ...environment.CORS_ALLOWED_ORIGINS]);
+		this.#corsAllowedOrigins = new Set([...defaultOrigins, ...environment.CORS_ALLOWED_ORIGINS]);
+	}
+
+	public get corsAllowedOrigins(): ReadonlySet<string> {
+		return this.#corsAllowedOrigins;
+	}
+
+	public get databaseUrl(): string | undefined {
+		return this.#environment.DATABASE_URL;
+	}
+
+	public get host(): string {
+		return this.#environment.HOST;
+	}
+
+	public get nodeEnv(): EnvSchema['NODE_ENV'] {
+		return this.#environment.NODE_ENV;
+	}
+
+	public get port(): number {
+		return this.#environment.PORT;
 	}
 
 	public get isDevelopment(): boolean {
@@ -30,6 +46,14 @@ export class Config {
 	}
 
 	public isCorsOriginAllowed(origin: string): boolean {
-		return this.corsAllowedOrigins.has(origin.replace(/\/$/, ''));
+		return this.#corsAllowedOrigins.has(origin.replace(/\/$/, ''));
+	}
+
+	public requireDatabaseUrl(): string {
+		if (!this.databaseUrl) {
+			throw new Error('DATABASE_URL is required');
+		}
+
+		return this.databaseUrl;
 	}
 }

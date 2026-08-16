@@ -1,11 +1,8 @@
-import 'dotenv/config';
+import { createConfig } from '@minha-associacao/config';
 import { createDatabaseClient, pingDatabase } from './client.js';
 
-if (!process.env.DATABASE_URL) {
-	throw new Error('DATABASE_URL is required');
-}
-
-const database = createDatabaseClient(process.env.DATABASE_URL);
+const config = createConfig();
+const database = createDatabaseClient(config.requireDatabaseUrl());
 
 try {
 	const result = await pingDatabase(database);

@@ -1,7 +1,5 @@
-import 'dotenv/config';
-
 import { pathToFileURL } from 'node:url';
-import { createConfig } from '@minha-associacao/config';
+import { type Config, createConfig } from '@minha-associacao/config';
 import type { FastifyInstance } from 'fastify';
 import { buildApp } from './app.js';
 
@@ -23,14 +21,10 @@ function registerShutdownHandlers(app: FastifyInstance): void {
 	process.once('SIGTERM', () => void shutdown('SIGTERM'));
 }
 
-export async function start(): Promise<FastifyInstance | undefined> {
+export async function start(config: Config = createConfig()): Promise<FastifyInstance | undefined> {
 	let app: FastifyInstance | undefined;
 
 	try {
-		const config = createConfig({
-			...process.env,
-			NODE_ENV: process.env.NODE_ENV ?? 'production',
-		});
 		app = buildApp({ config });
 		registerShutdownHandlers(app);
 
