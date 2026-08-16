@@ -3,6 +3,7 @@ import type { QueryClient } from '@tanstack/react-query';
 import { createRootRouteWithContext, HeadContent, Scripts } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { AppThemeProvider, appThemeBootstrapScript } from '@/providers/app-theme-provider';
+import { appThemeCss } from '@/theme/app-theme-css';
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools';
 import fontsCss from '../styles/fonts.css?url';
 import appCss from '../styles.css?url';
@@ -62,6 +63,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			lang="pt-BR"
 			suppressHydrationWarning>
 			<head>
+				<style>{appThemeCss}</style>
 				<script dangerouslySetInnerHTML={{ __html: appThemeBootstrapScript }} />
 				<HeadContent />
 			</head>
