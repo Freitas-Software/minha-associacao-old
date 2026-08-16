@@ -3,9 +3,14 @@ import { describe, expect, it } from 'vitest';
 
 describe('initial domain migration', () => {
 	it('contains the required domain schema invariants', async () => {
-		const sql = await readFile(new URL('../../drizzle/0000_domain-schema.sql', import.meta.url), 'utf8');
+		const sql = await readFile(
+			new URL('../../drizzle/0000_domain-schema.sql', import.meta.url),
+			'utf8'
+		);
 
-		expect(sql).toContain(`CREATE TYPE "public"."membership_status" AS ENUM('PENDING', 'ACTIVE', 'INACTIVE')`);
+		expect(sql).toContain(
+			`CREATE TYPE "public"."membership_status" AS ENUM('PENDING', 'ACTIVE', 'INACTIVE')`
+		);
 		expect(sql).toContain(`"status" "membership_status" DEFAULT 'PENDING' NOT NULL`);
 		expect(sql).toContain('"last_selected_at" timestamp with time zone');
 		expect(sql).not.toContain('password_hash');

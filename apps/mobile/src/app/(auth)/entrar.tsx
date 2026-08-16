@@ -36,14 +36,10 @@ export default function SignInScreen() {
 					variant="headlineLarge">
 					Minha Associação
 				</AppText>
-				<AppText tone="secondary">
-					A autenticação ainda não está conectada ao servidor.
-				</AppText>
+				<AppText tone="secondary">A autenticação ainda não está conectada ao servidor.</AppText>
 
 				{__DEV__ ? (
-					<AppButton onPress={handleDevelopmentLogin}>
-						Entrar em modo de desenvolvimento
-					</AppButton>
+					<AppButton onPress={handleDevelopmentLogin}>Entrar em modo de desenvolvimento</AppButton>
 				) : null}
 			</AppSurface>
 		</AppScreen>

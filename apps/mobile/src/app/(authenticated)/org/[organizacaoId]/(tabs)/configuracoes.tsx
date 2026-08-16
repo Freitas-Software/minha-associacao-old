@@ -32,9 +32,7 @@ export default function SettingsScreen() {
 			<AppCard
 				description="Escolha um tema ou acompanhe a aparência configurada no dispositivo."
 				dividers
-				headerAction={
-					<AppChip variant="primary">{mode === 'dark' ? 'Escuro' : 'Claro'}</AppChip>
-				}
+				headerAction={<AppChip variant="primary">{mode === 'dark' ? 'Escuro' : 'Claro'}</AppChip>}
 				title="Aparência">
 				<AppRadioButton.Group
 					onValueChange={handleThemePreference}
