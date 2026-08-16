@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { z } from 'zod';
 
 const originSchema = z.url().transform(value => new URL(value).origin);
@@ -21,6 +22,12 @@ export const envSchema = z.object({
 	HOST: z.string().trim().min(1).default('0.0.0.0'),
 	PORT: z.coerce.number().int().min(1).max(65_535).default(3001),
 	CORS_ALLOWED_ORIGINS: corsAllowedOriginsSchema,
+	DATABASE_URL: z
+		.url()
+		.refine(value => ['postgres:', 'postgresql:'].includes(new URL(value).protocol), {
+			message: 'DATABASE_URL must use the postgres or postgresql protocol',
+		})
+		.optional(),
 });
 
 export type EnvSchema = z.infer<typeof envSchema>;

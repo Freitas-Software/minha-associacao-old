@@ -68,8 +68,7 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
 	app.setSerializerCompiler(serializerCompiler);
 
 	const database =
-		options.database ??
-		(process.env.DATABASE_URL ? createDatabaseClient(process.env.DATABASE_URL) : undefined);
+		options.database ?? (config.databaseUrl ? createDatabaseClient(config.databaseUrl) : undefined);
 	app.decorate('database', database);
 	app.decorate('pingDatabase', pingDatabase);
 	if (!options.database && database) {

@@ -26,7 +26,6 @@
 		"@fastify/helmet": "catalog:api",
 		"@fastify/rate-limit": "catalog:api",
 		"@minha-associacao/config": "workspace:*",
-		"dotenv": "catalog:api",
 		"drizzle-orm": "0.45.2",
 		"fastify": "catalog:api",
 		"fastify-type-provider-zod": "catalog:api",
