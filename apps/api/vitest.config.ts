@@ -6,7 +6,7 @@ export default defineConfig({
 	},
 	test: {
 		coverage: {
-			exclude: ['src/dev.ts', 'src/index.ts'],
+			exclude: ['src/dev.ts', 'src/index.ts', 'src/db/ping.ts', 'src/db/schema/**'],
 			include: ['src/**/*.ts'],
 			provider: 'v8',
 			reporter: ['text', 'json-summary', 'html'],
