@@ -56,6 +56,18 @@ describe('API', () => {
 		expect(response.json()).toEqual({ status: 'error' });
 	});
 
+	it('returns 503 when no database is configured', async () => {
+		app = buildApp({
+			config: createConfig({ NODE_ENV: 'test' }),
+			logger: false,
+		});
+
+		const response = await app.inject({ method: 'GET', url: '/api/readiness' });
+
+		expect(response.statusCode).toBe(503);
+		expect(response.json()).toEqual({ status: 'error' });
+	});
+
 	it('only emits CORS credentials for configured origins', async () => {
 		app = buildApp({
 			config: createConfig({

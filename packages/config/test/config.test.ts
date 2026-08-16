@@ -69,6 +69,9 @@ describe('Config', () => {
 	it('exposes the selected runtime mode', () => {
 		const config = createConfig({ NODE_ENV: 'test' });
 
+		expect(config.host).toBe('0.0.0.0');
+		expect(config.nodeEnv).toBe('test');
+		expect(config.port).toBe(3001);
 		expect(config.isDevelopment).toBe(false);
 		expect(config.isProduction).toBe(false);
 		expect(config.isTest).toBe(true);
