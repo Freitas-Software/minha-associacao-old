@@ -13,6 +13,14 @@ const authRoute: FastifyPluginAsyncZod = async app => {
 				});
 			}
 
+			const [pathname] = request.url.split('?');
+
+			if (request.method === 'POST' && pathname === '/api/auth/sign-up/email')
+				return reply.status(403).send({
+					error: 'Sign-up must use the application registration flow',
+					code: 'SIGN_UP_FLOW_REQUIRED',
+				});
+
 			try {
 				const url = new URL(request.url, `http://${request.headers.host}`);
 

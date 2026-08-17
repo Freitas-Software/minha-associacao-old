@@ -5,6 +5,7 @@ export default defineConfig({
 		conditions: ['development'],
 	},
 	test: {
+		execArgv: ['--import', 'tsx'],
 		coverage: {
 			exclude: [
 				'src/dev.ts',

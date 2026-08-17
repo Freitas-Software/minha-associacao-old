@@ -8,6 +8,7 @@ import fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastif
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
 import { createDatabaseClient, type DatabaseClient, pingDatabase } from './db/client.js';
 import { type AppAuth, createAuth } from './lib/auth.js';
+import { createRequireAuth } from './lib/authenticated-user.js';
 
 const REDACTED_LOG_PATHS = [
 	'req.headers.authorization',
@@ -96,6 +97,8 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
 				})
 			: undefined);
 	app.decorate('auth', auth);
+	app.decorateRequest('actor', null);
+	app.decorate('requireAuth', createRequireAuth({ auth, database }));
 
 	app.register(fastifyHelmet);
 	app.register(fastifyRateLimit, {
