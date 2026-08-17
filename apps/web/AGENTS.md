@@ -1,22 +1,11 @@
 # Web guidance
 
-## Stack
+Inherits repository-root `AGENTS.md`.
 
-- TypeScript web app using TanStack Start/Router conventions.
-- Use existing shared packages such as design tokens and form-core where they already cover the requirement.
-- Biome is the lint/format authority.
-
-## Implementation
-
-- Follow the nearest existing route, loader, action, component, and data-flow patterns before introducing a new pattern.
-- Keep routing decisions in TanStack Router conventions; do not introduce Next.js-style assumptions or APIs.
-- Prefer shared design tokens/components over app-local copies when the behavior is genuinely shared.
-- Keep feature-specific code local to the feature until reuse is demonstrated.
-- Do not couple UI components directly to backend implementation details when an existing client/type boundary exists.
-- Preserve accessibility, loading, error, and empty states when modifying user flows.
-
-## Validation
-
-- Use the existing package scripts from this workspace.
-- Run the narrowest relevant typecheck/lint/test/build check first.
-- For changes to a shared package, also validate the affected shared package and any directly impacted consumer.
+- Follow current TanStack routing/data-flow patterns.
+- UI state is not authorization state.
+- Never hide/disable controls as the sole enforcement of a permission.
+- Do not infer business behavior from prototype screens when domain docs specify otherwise.
+- Preserve loading, error, empty, and inaccessible states.
+- For organization switching, ensure tenant identity is explicit in data requests/cache keys where required.
+- Draft UI/components/routes for the user; do not edit files by default.
