@@ -1,46 +1,71 @@
-# Minha Associação — repository guidance
+# Minha Associação — Codex repository guidance
+
+## Operating mode: eyes and brain, not hands
+
+- Default to **read, inspect, reason, review, plan, and draft**.
+- Do **not** modify, create, delete, rename, or reformat repository files unless the user explicitly overrides this rule for the current task.
+- Do **not** use `apply_patch`, shell redirection, `sed -i`, code formatters with write mode, package installation, migrations, git commits/pushes, or other state-changing commands by default.
+- When implementation is requested, return the proposed code, diff, file contents, migration plan, or exact edit instructions in the response so the user can write/apply them.
+- Read-only shell/search commands are allowed when they are necessary to understand the repository. Prefer targeted reads/searches.
+- If a command can materially mutate project, database, infrastructure, dependency state, or Git state, do not run it without explicit authorization.
+
+## Business source of truth
+
+- Business behavior lives under `docs/domain/`.
+- Start with `docs/README.md` to route to the minimum relevant documentation.
+- Architecture guidance lives under `docs/architecture/`.
+- Known schema/domain drift lives in `docs/development/implementation-gap.md`.
+- For intended behavior, documented domain rules outrank current code/schema, prototypes, mocks, and UI assumptions.
+- Never invent a business rule because the current schema happens to encode it.
+- When code and docs conflict, report the conflict before proposing implementation.
+- Refer to stable business rule IDs (`ORG-*`, `MBR-*`, `BIL-*`, etc.) in plans and reviews.
 
 ## Repository
 
-- This is a `pnpm` monorepo orchestrated with Turborepo. Do not use npm or yarn.
-- Main areas: `apps/api`, `apps/web`, `apps/mobile`, and shared `packages/*`.
-- Prefer existing workspace scripts and internal `workspace:*` packages over duplicate local implementations.
-- Biome is the repository formatter/linter. Do not introduce ESLint or Prettier unless the task explicitly changes the tooling strategy.
+- `pnpm` monorepo orchestrated with Turborepo. Do not substitute npm or yarn.
+- Main areas: `apps/api`, `apps/web`, `apps/mobile`, and `packages/*`.
+- Biome is the repository formatting/lint authority.
+- Reuse existing workspace scripts, shared packages, ID helpers, schemas, and established patterns before proposing new abstractions.
 
-## Working method
+## Analysis workflow
 
-- Make the smallest coherent change that satisfies the request.
-- Do not refactor, rename, reformat, or upgrade unrelated code.
-- Search for an existing implementation or pattern before creating a new abstraction.
-- Prefer targeted `rg`/file reads over recursive repository-wide reading.
-- Do not reread unchanged files unless new evidence requires it.
-- Before asking the user a repository-related question, inspect the relevant code, tests, package scripts, configuration, and nearby docs first.
-- Never rerun the same failed command unchanged. Diagnose the cause before retrying.
-- Do not add a production dependency when the existing stack can solve the task cleanly. If a new dependency is necessary, keep it scoped to the owning workspace.
+Before proposing a change:
 
-## Validation
+1. identify the exact requested behavior;
+2. read the smallest relevant domain docs;
+3. inspect current code/schema/tests;
+4. list affected rule IDs;
+5. classify authorization as public/token, provisioning, membership, self/resource, or privileged;
+6. identify domain↔implementation drift;
+7. propose the smallest coherent design;
+8. provide code/diff as a proposal only;
+9. describe narrow validation the user should run.
 
-- Validate the smallest affected workspace first.
-- From the repository root, prefer `pnpm --filter <workspace> <script>` for scoped checks; use the workspace name from its `package.json` instead of guessing it.
-- For cross-cutting changes, expand validation to affected consumers and then root Turborepo checks when justified.
-- Before finishing, review `git diff` and remove accidental or unrelated changes.
-- Do not run expensive repository-wide checks repeatedly when scoped checks already isolate the failure.
+## Non-negotiable domain reminders
 
-## Boundaries
+- Organization is the tenant boundary.
+- Selected organization UI state is never authorization proof.
+- One membership per user+organization for lifetime.
+- Exactly one current role per membership.
+- Role names and `isBoardRole` never grant authority.
+- `isFullAccess` grants all configurable permissions but bypasses no tenant/state/invariant checks.
+- Operational organizations must never have zero active full-access members.
+- Payments/permissions are evaluated from current state; sessions do not freeze authorization or financial truth.
+- Payment gateway confirmed state is authoritative for external settlements.
 
-- `apps/api`: backend and persistence. Follow its local `AGENTS.md` for API/database work.
-- `apps/web`: web client. Follow its local `AGENTS.md` for routing/UI work.
-- `apps/mobile`: Expo application. Follow its local `AGENTS.md` for mobile work.
-- `packages/*`: shared code with a wider blast radius. Follow `packages/AGENTS.md`.
-- Never commit secrets, real credentials, private keys, or production `.env` values.
-- Preserve public contracts unless the task explicitly requires a breaking change.
+## Scope discipline
 
-## Git and PRs
+- Do not implement undefined future features from assumptions.
+- If a real product decision is missing and multiple behaviors would materially change the domain, stop and ask one focused question.
+- Do not ask the user to confirm consequences that follow directly from documented invariants.
 
-- Keep one logical change per PR.
-- Do not mix unrelated cleanup with feature/fix work.
-- When asked to commit, push, or open a PR, use the available GitHub/yeet workflow if installed instead of duplicating that workflow here.
+## Reporting
 
-## Done
-
-A task is done when the requested behavior is implemented, relevant scoped checks pass, the final diff is focused, and any unresolved risk is stated explicitly.
+Keep reports useful to a human implementer:
+- evidence and relevant files;
+- rule IDs;
+- problem/constraint;
+- proposed design;
+- exact code or diff to type/apply;
+- validation steps;
+- real remaining risks.
