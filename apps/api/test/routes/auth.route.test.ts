@@ -67,4 +67,32 @@ describe('authentication route', () => {
 			code: 'AUTH_FAILURE',
 		});
 	});
+
+	it('blocks direct access to the native sign-up endpoint', async () => {
+		const handler = vi.fn();
+
+		app = buildApp({
+			auth: { handler } as never,
+			config: createConfig({ NODE_ENV: 'test' }),
+			logger: false,
+		});
+
+		const response = await app.inject({
+			method: 'POST',
+			payload: {
+				name: 'Maria Silva',
+				email: 'maria@example.com',
+				password: 'password123',
+				username: '52998224725',
+			},
+			url: '/api/auth/sign-up/email',
+		});
+
+		expect(response.statusCode).toBe(403);
+		expect(response.json()).toEqual({
+			error: 'Sign-up must use the application registration flow',
+			code: 'SIGN_UP_FLOW_REQUIRED',
+		});
+		expect(handler).not.toHaveBeenCalled();
+	});
 });
