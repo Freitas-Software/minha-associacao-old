@@ -8,23 +8,25 @@ The current codebase and database schema are evidence of the implementation stat
 
 Read only the documents relevant to the task.
 
-| Task | Start here | Also read |
-|---|---|---|
-| Tenant isolation, organization context | `domain/tenancy.md` | `architecture/multi-tenancy.md`, `architecture/authorization.md` |
-| Organization onboarding/provisioning | `domain/organizations.md` | `domain/roles.md`, `domain/invitations.md`, `domain/organization-documents.md` |
-| User identity or authentication | `domain/users.md` | `architecture/authentication.md` |
-| Membership lifecycle | `domain/memberships.md` | `domain/roles.md`, `domain/billing.md` |
-| Roles | `domain/roles.md` | `domain/permissions.md`, `architecture/authorization.md` |
-| Permissions/guards | `domain/permissions.md` | `architecture/authorization.md` |
-| Invitations | `domain/invitations.md` | `domain/users.md`, `domain/memberships.md`, `domain/roles.md` |
-| Monthly dues / charges / payments | `domain/billing.md` | `domain/memberships.md`, `domain/audit.md` |
-| Barter / settlement using goods or services | `domain/barter.md` | `domain/billing.md` |
-| PAA | `domain/paa.md` | `domain/barter.md`, `domain/billing.md` |
-| Membership card / delinquency restrictions | `domain/membership-cards.md` | `domain/billing.md` |
-| Organization files | `domain/organization-documents.md` | `domain/organizations.md` |
-| Audit/history | `domain/audit.md` | affected domain document |
-| Schema/model changes | affected domain doc | `architecture/persistence.md`, `development/implementation-gap.md` |
-| Tests | affected domain doc | `development/testing-strategy.md` |
+| Task                                        | Start here                             | Also read                                                                      |
+| ------------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------ |
+| Tenant isolation, organization context      | `domain/tenancy.md`                    | `architecture/multi-tenancy.md`, `architecture/authorization.md`               |
+| Organization onboarding/provisioning        | `domain/organizations.md`              | `domain/roles.md`, `domain/invitations.md`, `domain/organization-documents.md` |
+| User identity or authentication             | `domain/users.md`                      | `architecture/authentication.md`                                               |
+| Membership lifecycle                        | `domain/memberships.md`                | `domain/roles.md`, `domain/billing.md`                                         |
+| Roles                                       | `domain/roles.md`                      | `domain/permissions.md`, `architecture/authorization.md`                       |
+| Permissions/guards                          | `domain/permissions.md`                | `architecture/authorization.md`                                                |
+| Invitations                                 | `domain/invitations.md`                | `domain/users.md`, `domain/memberships.md`, `domain/roles.md`                  |
+| Monthly dues / charges / payments           | `domain/billing.md`                    | `domain/memberships.md`, `domain/audit.md`                                     |
+| Barter / settlement using goods or services | `domain/barter.md`                     | `domain/billing.md`                                                            |
+| PAA                                         | `domain/paa.md`                        | `domain/barter.md`, `domain/billing.md`                                        |
+| Membership card / delinquency restrictions  | `domain/membership-cards.md`           | `domain/billing.md`                                                            |
+| Organization files                          | `domain/organization-documents.md`     | `domain/organizations.md`                                                      |
+| Audit/history                               | `domain/audit.md`                      | affected domain document                                                       |
+| Schema/model changes                        | affected domain doc                    | `architecture/persistence.md`, `development/implementation-gap.md`             |
+| Tests                                       | affected domain doc                    | `development/testing-strategy.md`                                              |
+| Repository/file organization                | `architecture/repository-structure.md` | affected application `AGENTS.md`                                               |
+| Writing implementation code                 | `development/coding-guide.md`          | affected architecture/domain docs                                              |
 
 ## Rule identifiers
 

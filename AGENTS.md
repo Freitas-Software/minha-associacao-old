@@ -62,6 +62,7 @@ Before proposing a change:
 ## Reporting
 
 Keep reports useful to a human implementer:
+
 - evidence and relevant files;
 - rule IDs;
 - problem/constraint;
