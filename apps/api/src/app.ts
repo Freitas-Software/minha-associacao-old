@@ -1,4 +1,3 @@
-import path from 'node:path';
 import fastifyAutoload from '@fastify/autoload';
 import fastifyCors from '@fastify/cors';
 import fastifyHelmet from '@fastify/helmet';
@@ -6,9 +5,11 @@ import fastifyRateLimit from '@fastify/rate-limit';
 import { type Config, createConfig } from '@minha-associacao/config';
 import fastify, { type FastifyInstance, type FastifyServerOptions } from 'fastify';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
+import path from 'node:path';
 import { createDatabaseClient, type DatabaseClient, pingDatabase } from './db/client.js';
-import { type AppAuth, createAuth } from './lib/auth.js';
-import { createRequireAuth } from './lib/authenticated-user.js';
+import { type AppAuth, createAuth } from './infra/auth/better-auth.js';
+import { createRequireAuth } from './modules/identity/authenticated-actor.js';
+import identityModule from './modules/identity/identity.module.js';
 
 const REDACTED_LOG_PATHS = [
 	'req.headers.authorization',
@@ -125,6 +126,8 @@ export function buildApp(options: BuildAppOptions = {}): FastifyInstance {
 		dir: path.resolve(import.meta.dirname, 'routes'),
 		dirNameRoutePrefix: true,
 	});
+
+	app.register(identityModule)
 
 	return app;
 }

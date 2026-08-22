@@ -1,7 +1,7 @@
-import type { FastifyReply, FastifyRequest } from 'fastify';
+import 'fastify';
 import type { DatabaseClient, pingDatabase } from './db/client.js';
-import type { AppAuth } from './lib/auth.ts';
-import type { AuthenticatedActor } from './lib/authenticated-user.ts';
+import type { AppAuth } from './infra/auth/better-auth.ts';
+import type { AuthenticatedActor } from './modules/identity/authenticated-actor.ts';
 
 declare module 'fastify' {
 	interface FastifyInstance {

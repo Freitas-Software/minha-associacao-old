@@ -2,9 +2,9 @@ import { drizzleAdapter } from '@better-auth/drizzle-adapter';
 import { expo } from '@better-auth/expo';
 import { betterAuth } from 'better-auth';
 import { username } from 'better-auth/plugins';
-import type { Database } from '../db/client.js';
-import * as schema from '../db/schema/index.js';
-import { isValidCpf, normalizeCpf } from './cpf.js';
+import type { Database } from '../../db/client.js';
+import * as schema from '../../db/schema/index.js';
+import { isValidCpf, normalizeCpf } from '../../shared/validation/cpf.js';
 
 export interface AuthOptions {
 	readonly baseUrl: string;

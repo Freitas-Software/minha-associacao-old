@@ -1,9 +1,9 @@
 import { fromNodeHeaders } from 'better-auth/node';
 import { eq } from 'drizzle-orm';
 import type { FastifyReply, FastifyRequest } from 'fastify';
-import type { DatabaseClient } from '../db/client.js';
-import { users } from '../db/schema/users.js';
-import type { AppAuth } from './auth.js';
+import type { DatabaseClient } from '../../db/client.js';
+import { users } from '../../db/schema/index.js';
+import type { AppAuth } from '../../infra/auth/better-auth.js';
 
 export interface AuthenticatedActor {
 	id: string;

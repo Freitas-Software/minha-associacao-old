@@ -2,8 +2,8 @@ import { isAPIError } from 'better-auth/api';
 import type { FastifyReply } from 'fastify';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import z from 'zod';
-import { isValidCpf, normalizeCpf } from '../../lib/cpf.js';
-import { registerFounder } from '../../services/register-founder.js';
+import { isValidCpf, normalizeCpf } from '../../shared/validation/cpf.js';
+import { registerFounder } from './register-founder.js';
 
 const registrationBodySchema = z.object({
 	name: z.string().trim().min(2).max(120),
