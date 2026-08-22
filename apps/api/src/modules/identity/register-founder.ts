@@ -1,11 +1,10 @@
-import type { IncomingHttpHeaders } from 'node:http';
 import { fromNodeHeaders } from 'better-auth/node';
 import { eq } from 'drizzle-orm';
-import type { Database } from '../db/client.js';
-import { createId } from '../db/ids.js';
-import { user as authUsers } from '../db/schema/better-auth.js';
-import { users } from '../db/schema/users.js';
-import type { AppAuth } from '../lib/auth.js';
+import type { IncomingHttpHeaders } from 'node:http';
+import type { Database } from '../../db/client.js';
+import { createId } from '../../db/ids.js';
+import { user as authUsers, users } from '../../db/schema/index.js';
+import type { AppAuth } from '../../infra/auth/better-auth.js';
 
 export interface RegisterFounderInput {
 	name: string;
