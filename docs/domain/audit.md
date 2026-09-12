@@ -50,7 +50,7 @@ At minimum, audit must cover:
 
 `AUD-024` individual delinquency exception and mandatory reason;
 
-`AUD-025` material barter/PAA settlement operations.
+`AUD-025` material barter settlement operations.
 
 ## Immutability
 

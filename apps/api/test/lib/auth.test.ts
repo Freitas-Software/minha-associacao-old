@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createAuth } from '../../src/lib/auth.js';
+import { createAuth } from '../../src/infra/auth/better-auth.js';
 
 describe('createAuth', () => {
 	it('creates the authentication service with the Drizzle adapter', () => {

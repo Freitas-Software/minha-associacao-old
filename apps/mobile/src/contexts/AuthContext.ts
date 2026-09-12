@@ -20,6 +20,13 @@ export interface AuthContextValue {
 	 * autenticação bem-sucedida na API.
 	 */
 	setSession: (session: AuthSession) => void;
+	register: (input: {
+		name: string;
+		documentNumber: string;
+		email: string;
+		password: string;
+	}) => Promise<void>;
+	signIn: (input: { documentNumber: string; password: string }) => Promise<void>;
 
 	signOut: () => void;
 }

@@ -1,6 +1,7 @@
 import type React from 'react';
 import { useMemo, useState } from 'react';
 import { AuthContext, type AuthContextValue, type AuthSession } from '@/contexts/AuthContext';
+import { apiRequest, clearApiSession, setApiSessionToken } from '@/lib/api';
 
 export function AuthProvider({ children }: React.PropsWithChildren) {
 	const [session, setSessionState] = useState<AuthSession | null>(null);
@@ -18,7 +19,27 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
 			session,
 			isLoading,
 			setSession: nextSession => setSessionState(nextSession),
-			signOut: () => setSessionState(null),
+			register: async input => {
+				const result = await apiRequest<{
+					token: string;
+					user: { id: string; name: string | null };
+				}>('/api/registrations', { method: 'POST', body: JSON.stringify(input) });
+				setApiSessionToken(result.token);
+				setSessionState({ user: { id: result.user.id, name: result.user.name ?? input.name } });
+			},
+			signIn: async input => {
+				const result = await apiRequest<{ token: string }>('/api/sessions', {
+					method: 'POST',
+					body: JSON.stringify(input),
+				});
+				setApiSessionToken(result.token);
+				const profile = await apiRequest<{ user: { id: string; name: string | null } }>('/api/me');
+				setSessionState({ user: { id: profile.user.id, name: profile.user.name ?? 'Usuário' } });
+			},
+			signOut: () => {
+				clearApiSession();
+				setSessionState(null);
+			},
 		}),
 		[session]
 	);

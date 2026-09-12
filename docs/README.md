@@ -19,7 +19,6 @@ Read only the documents relevant to the task.
 | Invitations                                 | `domain/invitations.md`                | `domain/users.md`, `domain/memberships.md`, `domain/roles.md`                  |
 | Monthly dues / charges / payments           | `domain/billing.md`                    | `domain/memberships.md`, `domain/audit.md`                                     |
 | Barter / settlement using goods or services | `domain/barter.md`                     | `domain/billing.md`                                                            |
-| PAA                                         | `domain/paa.md`                        | `domain/barter.md`, `domain/billing.md`                                        |
 | Membership card / delinquency restrictions  | `domain/membership-cards.md`           | `domain/billing.md`                                                            |
 | Organization files                          | `domain/organization-documents.md`     | `domain/organizations.md`                                                      |
 | Audit/history                               | `domain/audit.md`                      | affected domain document                                                       |

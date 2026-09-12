@@ -1,4 +1,5 @@
 import { router } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import {
 	AppAvatar,
 	AppButton,
@@ -9,13 +10,41 @@ import {
 	AppText,
 	EmptyState,
 } from '@/components/ui';
+import { apiRequest } from '@/lib/api';
+
+type Organization = {
+	id: string;
+	name: string;
+	abbreviation: string;
+	documentNumber: string;
+	status: string;
+};
 
 export default function OrganizacoesScreen() {
-	function openDevelopmentOrganizacao() {
+	const [organizations, setOrganizations] = useState<Organization[]>([]);
+	const [error, setError] = useState<string | null>(null);
+
+	const loadOrganizations = useCallback(async () => {
+		try {
+			setError(null);
+			const result = await apiRequest<{ organizations: Organization[] }>('/api/organizations');
+			setOrganizations(result.organizations);
+		} catch (cause) {
+			setError(
+				cause instanceof Error ? cause.message : 'Não foi possível carregar as associações.'
+			);
+		}
+	}, []);
+
+	useEffect(() => {
+		void loadOrganizations();
+	}, [loadOrganizations]);
+
+	function openOrganizacao(organizationId: string) {
 		router.push({
 			pathname: '/org/[organizacaoId]',
 			params: {
-				organizacaoId: 'dev-organizacao',
+				organizacaoId: organizationId,
 			},
 		});
 	}
@@ -26,14 +55,22 @@ export default function OrganizacoesScreen() {
 				description="Selecione a associação que deseja administrar."
 				title="Suas associações"
 			/>
-			{__DEV__ ? (
-				<AppCard
-					description="Ambiente local para validar os fluxos do aplicativo."
-					footer={<AppButton onPress={openDevelopmentOrganizacao}>Abrir associação</AppButton>}
-					headerAction={<AppAvatar label="AD" />}
-					title="Associação de desenvolvimento">
-					<AppText tone="secondary">Disponível somente durante o desenvolvimento.</AppText>
-				</AppCard>
+			{error ? <AppText tone="negative">{error}</AppText> : null}
+			{organizations.length > 0 ? (
+				organizations.map(organization => (
+					<AppCard
+						description={`${organization.documentNumber} · ${organization.status}`}
+						footer={
+							<AppButton onPress={() => openOrganizacao(organization.id)}>
+								Abrir associação
+							</AppButton>
+						}
+						headerAction={<AppAvatar label={organization.abbreviation.slice(0, 2).toUpperCase()} />}
+						key={organization.id}
+						title={organization.name}>
+						<AppText tone="secondary">Acesso autorizado pela sua conta.</AppText>
+					</AppCard>
+				))
 			) : (
 				<EmptyState
 					contained

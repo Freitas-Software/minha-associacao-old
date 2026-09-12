@@ -4,7 +4,7 @@ import { betterAuth } from 'better-auth';
 import { username } from 'better-auth/plugins';
 import { createDatabaseClient } from '../db/client.js';
 import * as schema from '../db/schema/index.js';
-import { isValidCpf, normalizeCpf } from './cpf.js';
+import { isValidCpf, normalizeCpf } from '../shared/validation/cpf.js';
 
 const config = createConfig();
 const database = createDatabaseClient(config.requireDatabaseUrl());

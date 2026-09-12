@@ -15,7 +15,6 @@ They intentionally avoid binding the domain to a particular HTTP route layout, U
 - `invitations.md` — individual and global onboarding links
 - `billing.md` — charges, payments, delinquency, refunds, forgiveness
 - `barter.md` — generic non-cash settlement
-- `paa.md` — PAA-specific delivery valuation
 - `organization-documents.md` — statute, election record, and file history
 - `membership-cards.md` — financial regularity and benefit restrictions
 - `audit.md` — immutable domain history

@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 import {
+	KeyboardAvoidingView,
+	Platform,
 	ScrollView,
 	type ScrollViewProps,
 	type StyleProp,
@@ -7,14 +9,15 @@ import {
 	type ViewStyle,
 } from 'react-native';
 import { type Edge, SafeAreaView } from 'react-native-safe-area-context';
-import { AppText } from './app-text';
 import { useMinhaAssociacaoTheme } from '@/hooks/use-minha-associacao-theme';
+import { AppText } from './app-text';
 
 export interface AppScreenProps {
 	children: ReactNode;
 	centered?: boolean;
 	contentContainerStyle?: StyleProp<ViewStyle>;
 	keyboardShouldPersistTaps?: ScrollViewProps['keyboardShouldPersistTaps'];
+	keyboardAware?: boolean;
 	padded?: boolean;
 	safeAreaEdges?: Edge[];
 	scrollable?: boolean;
@@ -29,6 +32,7 @@ export function AppScreen({
 	children,
 	contentContainerStyle,
 	keyboardShouldPersistTaps = 'handled',
+	keyboardAware = false,
 	padded = true,
 	safeAreaEdges = defaultSafeAreaEdges,
 	scrollable = false,
@@ -47,20 +51,31 @@ export function AppScreen({
 		contentContainerStyle,
 	];
 
+	const content = scrollable ? (
+		<ScrollView
+			contentContainerStyle={contentStyle}
+			keyboardDismissMode="interactive"
+			keyboardShouldPersistTaps={keyboardShouldPersistTaps}
+			style={{ backgroundColor: colors.canvas, flex: 1 }}>
+			{children}
+		</ScrollView>
+	) : (
+		<View style={[{ flex: 1 }, contentStyle]}>{children}</View>
+	);
+
 	return (
 		<SafeAreaView
 			edges={safeAreaEdges}
 			style={{ backgroundColor: colors.canvas, flex: 1 }}
 			testID={testID}>
-			{scrollable ? (
-				<ScrollView
-					contentContainerStyle={contentStyle}
-					keyboardShouldPersistTaps={keyboardShouldPersistTaps}
-					style={{ backgroundColor: colors.canvas, flex: 1 }}>
-					{children}
-				</ScrollView>
+			{keyboardAware ? (
+				<KeyboardAvoidingView
+					behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+					style={{ flex: 1 }}>
+					{content}
+				</KeyboardAvoidingView>
 			) : (
-				<View style={[{ flex: 1 }, contentStyle]}>{children}</View>
+				content
 			)}
 		</SafeAreaView>
 	);

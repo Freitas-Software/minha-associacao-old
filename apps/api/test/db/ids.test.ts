@@ -8,10 +8,13 @@ describe('createId', () => {
 		expect(createId('membership')).toMatch(/^mbr_[0-9a-z]{26}$/);
 		expect(createId('role')).toMatch(/^rol_[0-9a-z]{26}$/);
 		expect(createId('permission')).toMatch(/^prm_[0-9a-z]{26}$/);
-		expect(createId('boardMember')).toMatch(/^brd_[0-9a-z]{26}$/);
-		expect(createId('storedFile')).toMatch(/^fil_[0-9a-z]{26}$/);
+	expect(createId('storedFile')).toMatch(/^fil_[0-9a-z]{26}$/);
 		expect(createId('organizationDocument')).toMatch(/^doc_[0-9a-z]{26}$/);
 		expect(createId('invitation')).toMatch(/^inv_[0-9a-z]{26}$/);
-		expect(createId('auditLog')).toMatch(/^aud_[0-9a-z]{26}$/);
-	});
+	expect(createId('auditLog')).toMatch(/^aud_[0-9a-z]{26}$/);
+	expect(createId('provisioningAccess')).toMatch(/^pax_[0-9a-z]{26}$/);
+	expect(createId('charge')).toMatch(/^chg_[0-9a-z]{26}$/);
+	expect(createId('payment')).toMatch(/^pay_[0-9a-z]{26}$/);
+	expect(createId('barterOperation')).toMatch(/^btr_[0-9a-z]{26}$/);
+});
 });

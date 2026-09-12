@@ -1,0 +1,11 @@
+ALTER TABLE "barter_operations" ADD COLUMN "description" text;
+UPDATE "barter_operations" SET "description" = 'Permuta existente' WHERE "description" IS NULL;
+ALTER TABLE "barter_operations" ALTER COLUMN "description" SET NOT NULL;
+ALTER TABLE "barter_operations" DROP COLUMN "source_type";
+ALTER TABLE "barter_operations" DROP COLUMN "source_reference";
+DROP TABLE "paa_delivery_items";
+DROP TABLE "paa_deliveries";
+DROP TABLE "paa_price_table_items";
+DROP TABLE "paa_projects";
+DROP TYPE "public"."barter_source_type";
+DROP TYPE "public"."paa_project_status";

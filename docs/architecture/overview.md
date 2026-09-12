@@ -45,11 +45,6 @@ Economic source
   -> allocations
   -> Charges
 
-PAA project
-  -> official price table
-  -> delivery + items
-  -> valued economic source
-  -> Barter
 ```
 
 ## Architectural principles

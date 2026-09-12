@@ -11,7 +11,7 @@ export const organizations = pgTable(
 		name: text().notNull(),
 		abbreviation: text().notNull(),
 		document_number: text().notNull(),
-		status: organizationStatusEnum().notNull().default('ACTIVE'),
+		status: organizationStatusEnum().notNull().default('PROVISIONING'),
 		created_at: timestamp({ withTimezone: true }).notNull().defaultNow(),
 		updated_at: timestamp({ withTimezone: true }).notNull().defaultNow(),
 	},

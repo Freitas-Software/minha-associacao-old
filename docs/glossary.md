@@ -48,8 +48,5 @@ A full or partial reversal of a previously recorded payment. For gateway payment
 ## Barter
 A generic non-cash economic settlement mechanism that produces value/credit which may be allocated to charges.
 
-## PAA
-A specialized source of barter/credit associated with a Programa de Aquisição de Alimentos project, official price table, deliveries, and delivery items.
-
 ## Audit log
 Immutable historical evidence of who/what performed a meaningful domain action, when, and with relevant context. It does not replace current domain state.

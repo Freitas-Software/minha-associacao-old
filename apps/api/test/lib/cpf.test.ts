@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isValidCpf, normalizeCpf } from '../../src/lib/cpf.js';
+import { isValidCpf, normalizeCpf } from '../../src/shared/validation/cpf.js';
 
 describe('CPF helpers', () => {
 	it('normalizes punctuation and whitespace', () => {

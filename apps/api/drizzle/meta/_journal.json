@@ -29,6 +29,27 @@
       "when": 1786895179929,
       "tag": "0003_condemned_hulk",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787438057024,
+      "tag": "0004_keen_sabretooth",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787438185934,
+      "tag": "0005_tiny_kree",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1787439000000,
+      "tag": "0006_generic_barter_remove_paa",
+      "breakpoints": true
     }
   ]
 }

@@ -1,5 +1,6 @@
 import { index, jsonb, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 import { createId } from '../ids.js';
+import { auditActorSourceEnum } from './enums.js';
 import { organizations } from './organizations.js';
 import { users } from './users.js';
 
@@ -13,6 +14,7 @@ export const auditLogs = pgTable(
 			.notNull()
 			.references(() => organizations.id, { onDelete: 'restrict' }),
 		actor_user_id: text().references(() => users.id, { onDelete: 'set null' }),
+		actor_source: auditActorSourceEnum().notNull(),
 		action: text().notNull(),
 		entity_type: text().notNull(),
 		entity_id: text().notNull(),

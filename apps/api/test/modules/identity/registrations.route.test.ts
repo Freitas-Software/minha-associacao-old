@@ -193,6 +193,7 @@ describe('founder registration route', () => {
 			expect.arrayContaining([expect.stringContaining('better-auth.session_token=session-token')])
 		);
 		expect(response.json()).toEqual({
+			token: 'session-token',
 			user: {
 				id: 'usr_01',
 				documentNumber: '52998224725',

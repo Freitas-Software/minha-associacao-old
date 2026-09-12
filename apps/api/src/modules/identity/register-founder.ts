@@ -1,6 +1,6 @@
+import type { IncomingHttpHeaders } from 'node:http';
 import { fromNodeHeaders } from 'better-auth/node';
 import { eq } from 'drizzle-orm';
-import type { IncomingHttpHeaders } from 'node:http';
 import type { Database } from '../../db/client.js';
 import { createId } from '../../db/ids.js';
 import { user as authUsers, users } from '../../db/schema/index.js';
@@ -45,6 +45,7 @@ export async function registerFounder(options: RegisterFounderOptions) {
 	});
 
 	try {
+		if (!registration.response.token) throw new Error('Registration did not create a session');
 		const [domainUser] = await database
 			.insert(users)
 			.values({
@@ -68,6 +69,7 @@ export async function registerFounder(options: RegisterFounderOptions) {
 		return {
 			status: 'created' as const,
 			authenticationHeaders: registration.headers,
+			token: registration.response.token,
 			user: domainUser,
 		};
 	} catch (registrationError) {

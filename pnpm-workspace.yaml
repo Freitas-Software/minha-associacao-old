@@ -17,6 +17,14 @@ catalog:
   better-auth: ^1.6.29
   class-variance-authority: ^0.7.1
   clsx: ^2.1.1
+  expo: ~57.0.15
+  expo-constants: ~57.0.13
+  expo-dev-client: ~57.0.14
+  expo-document-picker: ~57.0.1
+  expo-file-system: ~57.0.5
+  expo-router: ~57.0.15
+  expo-splash-screen: ~57.0.7
+  expo-updates: ~57.0.16
   lucide-react: ^1.30.0
   shadcn: ^4.16.2
   tailwind-merge: ^3.6.0
@@ -33,7 +41,6 @@ catalogs:
     react-dom: 19.2.3
   expo:
     expo-image: ~57.0.3
-    expo-linking: ~57.0.6
     expo-font: ~57.0.1
     expo-doctor: 1.20.1
     expo-system-ui: 57.0.2

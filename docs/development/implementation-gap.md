@@ -73,9 +73,9 @@ The inspected schema does not yet model the approved billing domain:
 - delinquency policies/exceptions;
 - advance payment.
 
-### GAP-010 — Barter/PAA
+### GAP-010 — Barter
 
-The inspected schema does not yet model barter or PAA project/price-table/delivery data.
+The inspected schema does not yet model the complete barter lifecycle.
 
 ### GAP-011 — Audit actor semantics
 

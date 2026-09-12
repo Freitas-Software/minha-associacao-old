@@ -13,6 +13,7 @@ const registrationBodySchema = z.object({
 });
 
 const registrationResponseSchema = z.object({
+	token: z.string(),
 	user: z.object({
 		id: z.string(),
 		documentNumber: z.string(),
@@ -72,6 +73,7 @@ const registrationsRoute: FastifyPluginAsyncZod = async app => {
 				applyAuthenticationHeaders(result.authenticationHeaders, reply);
 
 				return reply.status(201).send({
+					token: result.token,
 					user: result.user,
 				});
 			} catch (error) {

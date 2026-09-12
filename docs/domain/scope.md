@@ -20,7 +20,7 @@ The following areas may exist later but do not yet have enough approved business
 - organization-wide communications and notices;
 - generic member benefits beyond delinquency restrictions/card validity;
 - AI workflows over organization documents;
-- detailed approval workflows for every possible non-PAA barter source;
+- detailed approval workflows for every possible barter agreement;
 - cooperative-specific governance;
 - advanced document taxonomy beyond the mandatory institutional documents;
 - arbitrary custom formulas for penalties/interest;

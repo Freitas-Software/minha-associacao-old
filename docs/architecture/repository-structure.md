@@ -158,7 +158,6 @@ modules/
 ├── invitations/
 ├── billing/
 ├── barter/
-├── paa/
 ├── documents/
 └── audit/
 ```
@@ -180,7 +179,6 @@ The mapping is conceptual rather than strictly one-to-one.
 | `invitations/` | `invitations.md` |
 | `billing/` | `billing.md`, `membership-cards.md` |
 | `barter/` | `barter.md` |
-| `paa/` | `paa.md`, `barter.md` |
 | `documents/` | `organization-documents.md` |
 | `audit/` | `audit.md` |
 

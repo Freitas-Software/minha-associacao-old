@@ -1,6 +1,6 @@
 # Barter
 
-Barter (`permuta`) is a generic financial mechanism. PAA is one specialized source, not the definition of barter itself.
+Barter (`permuta`) is a generic financial mechanism configured by the organization and the producer.
 
 ## Core model
 
@@ -8,9 +8,9 @@ Barter (`permuta`) is a generic financial mechanism. PAA is one specialized sour
 
 `BRT-002` A barter operation may generate a confirmed credit/value that can be allocated to membership charges.
 
-`BRT-003` PAA is one possible source of barter value; the billing core must not depend on PAA-specific entities.
+`BRT-003` The barter model must not depend on a specific external program, notice, sector, product, or valuation table.
 
-`BRT-004` Future non-PAA barter sources must be able to reuse the same allocation model without changing the core charge model.
+`BRT-004` The organization and producer define the agreement, recognized value, eligible value, evidence, and residual-value disposition for each operation.
 
 ## Allocation
 
@@ -40,8 +40,8 @@ Barter (`permuta`) is a generic financial mechanism. PAA is one specialized sour
 
 ## Auditability
 
-`BRT-016` The system must preserve the economic source, calculated/recognized value, selected allocations, residual disposition, actors, and relevant supporting evidence.
+`BRT-016` The system must preserve the agreement description, recognized value, selected allocations, residual disposition, actors, and relevant supporting evidence.
 
 ## Intentionally unspecified
 
-The exact approval workflow for every future non-PAA barter source is not yet standardized. Do not invent one universal approval process. PAA-specific valuation rules are defined in `paa.md`.
+The exact approval workflow for each organization is not standardized. Do not invent one universal approval process.

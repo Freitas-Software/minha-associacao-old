@@ -1,7 +1,7 @@
 import { drizzleAdapter } from '@better-auth/drizzle-adapter';
 import { expo } from '@better-auth/expo';
 import { betterAuth } from 'better-auth';
-import { username } from 'better-auth/plugins';
+import { bearer, username } from 'better-auth/plugins';
 import type { Database } from '../../db/client.js';
 import * as schema from '../../db/schema/index.js';
 import { isValidCpf, normalizeCpf } from '../../shared/validation/cpf.js';
@@ -25,6 +25,7 @@ export function createAuth(db: Database, options: AuthOptions) {
 		secret: options.secret,
 		trustedOrigins: [...options.trustedOrigins],
 		plugins: [
+			bearer(),
 			username({
 				minUsernameLength: 11,
 				maxUsernameLength: 14,

@@ -45,7 +45,7 @@ Persist:
 - refunds/reversals;
 - forgiveness/current component state;
 - delinquency exceptions;
-- barter/PAA entities when implemented.
+- barter entities when implemented.
 
 Do not reconstruct obligations only from current configuration.
 
